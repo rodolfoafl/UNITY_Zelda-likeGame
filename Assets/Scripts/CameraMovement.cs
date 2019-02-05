@@ -11,6 +11,34 @@ public class CameraMovement : MonoBehaviour {
     [SerializeField] Vector2 _maxPosition;
     [SerializeField] Vector2 _minPosition;
 
+    #region Properties
+    public Vector2 MaxPosition
+    {
+        get
+        {
+            return _maxPosition;
+        }
+
+        set
+        {
+            _maxPosition = value;
+        }
+    }
+
+    public Vector2 MinPosition
+    {
+        get
+        {
+            return _minPosition;
+        }
+
+        set
+        {
+            _minPosition = value;
+        }
+    }
+    #endregion
+
     void LateUpdate()
     {
         if(transform.position != _target.position)
