@@ -49,3 +49,15 @@ sysinfo.txt
 
 # Crashlytics generated file
 crashlytics-build.properties
+
+Assets/Resources/DOTweenSettings\.asset
+
+Assets/Scenes/SampleScene\.unity
+
+Library/assetDatabase3
+
+Library/CurrentLayout\.dwlt
+
+Library/LastSceneManagerSetup\.txt
+
+Library/shadercompiler-UnityShaderCompiler\.exe0\.log

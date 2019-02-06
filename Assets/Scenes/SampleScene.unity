@@ -6583,8 +6583,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _target: {fileID: 238761044}
   _smoothing: 0.05
-  _maxPosition: {x: 3.8, y: 8.4}
-  _minPosition: {x: -3.8, y: -0.45}
+  _maxPosition: {x: 1.5, y: 12}
+  _minPosition: {x: -13.5, y: 0}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -22276,6 +22276,11 @@ Prefab:
       propertyPath: m_Name
       value: Main_to_Lake
       objectReference: {fileID: 0}
+    - target: {fileID: 114283732847374830, guid: 0e6d65b9b42cfe24eb06fa9508c958f6,
+        type: 2}
+      propertyPath: _cameraChange.x
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0e6d65b9b42cfe24eb06fa9508c958f6, type: 2}
   m_IsPrefabAsset: 0
@@ -22405,7 +22410,7 @@ Prefab:
     - target: {fileID: 114283732847374830, guid: 0e6d65b9b42cfe24eb06fa9508c958f6,
         type: 2}
       propertyPath: _cameraChange.x
-      value: -24
+      value: -30
       objectReference: {fileID: 0}
     - target: {fileID: 114283732847374830, guid: 0e6d65b9b42cfe24eb06fa9508c958f6,
         type: 2}
