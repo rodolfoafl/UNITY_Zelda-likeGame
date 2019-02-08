@@ -20,8 +20,11 @@ public class PlayerMovement : MonoBehaviour {
     }
 
 	void Start () {
+        _currentState = PlayerState.WALK;
         _rigidbody = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
+        _animator.SetFloat("moveX", 0);
+        _animator.SetFloat("moveY", -1);
     }
 	
 	void Update () {
