@@ -2,6 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+public enum PlayerState
+{
+    WALK, ATTACK, INTERACT, STAGGER, IDLE
+}
+
 public class PlayerMovement : MonoBehaviour {
 
     [SerializeField] float _speed;
@@ -14,10 +20,20 @@ public class PlayerMovement : MonoBehaviour {
 
     PlayerState _currentState;
 
-    enum PlayerState
+    #region Properties
+    public PlayerState CurrentState
     {
-        WALK, ATTACK, INTERACT
+        get
+        {
+            return _currentState;
+        }
+
+        set
+        {
+            _currentState = value;
+        }
     }
+    #endregion
 
 	void Start () {
         _currentState = PlayerState.WALK;
@@ -32,11 +48,11 @@ public class PlayerMovement : MonoBehaviour {
         _change.x = Input.GetAxisRaw("Horizontal");
         _change.y = Input.GetAxisRaw("Vertical");
 
-        if(Input.GetButtonDown("Attack") && _currentState != PlayerState.ATTACK)
+        if(Input.GetButtonDown("Attack") && _currentState != PlayerState.ATTACK && _currentState != PlayerState.STAGGER)
         {
             StartCoroutine(Attack());
         }
-        else if (_currentState == PlayerState.WALK)
+        else if (_currentState == PlayerState.WALK || _currentState == PlayerState.IDLE)
         {
             UpdateAnimationAndMove();
         }
@@ -70,5 +86,21 @@ public class PlayerMovement : MonoBehaviour {
         _animator.SetFloat("moveX", _change.x);
         _animator.SetFloat("moveY", _change.y);
         _animator.SetBool("moving", true);
+    }
+
+    public void CallKnock(Rigidbody2D knockedRB, float knockTime)
+    {
+        StartCoroutine(Knock(knockedRB, knockTime));
+    }
+
+    IEnumerator Knock(Rigidbody2D knockedRB, float knockTime)
+    {
+        if (knockedRB != null)
+        {
+            Debug.Log("player knocked!");
+            yield return new WaitForSeconds(knockTime);
+            knockedRB.velocity = Vector2.zero;
+            _currentState = PlayerState.IDLE;
+        }
     }
 }

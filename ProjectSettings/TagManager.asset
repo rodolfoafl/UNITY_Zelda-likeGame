@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Breakable
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -14,7 +15,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Enemies
   - 
   - 
   - 
@@ -42,6 +43,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Player
+  - name: Objects
+    uniqueID: 3695235701
+    locked: 0
+  - name: Characters
     uniqueID: 2978746155
     locked: 0
