@@ -6,6 +6,7 @@ public class Knockback : MonoBehaviour {
 
     [SerializeField] float _thrust;
     [SerializeField] float _knockTime;
+    [SerializeField] float _damage;
 
     Enemy _enemy;
     PlayerMovement _player;
@@ -24,18 +25,21 @@ public class Knockback : MonoBehaviour {
                 difference = difference.normalized * _thrust;
                 otherRB.AddForce(difference, ForceMode2D.Impulse);
 
-                if (other.gameObject.CompareTag("Enemy"))
+                if (other.gameObject.CompareTag("Enemy") && other.isTrigger)
                 {
                     _enemy = other.GetComponent<Enemy>();
                     _enemy.ChangeState(CharacterState.STAGGER);
-                    _enemy.CallKnock(otherRB, _knockTime);
+                    _enemy.CallKnock(otherRB, _knockTime, _damage);
                     return;
                 }
 
                 if (other.gameObject.CompareTag("Player"))
                 {
-                    _player.ChangeState(CharacterState.STAGGER);
-                    _player.CallKnock(otherRB, _knockTime);
+                    if (_player.CurrentState != CharacterState.STAGGER)
+                    {
+                        _player.ChangeState(CharacterState.STAGGER);
+                        _player.CallKnock(otherRB, _knockTime, _damage);
+                    }
                     return;
                 }                
             }

@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour {
 
     [SerializeField] float _speed;
+    [SerializeField] FloatValue _currentHealth;
+    [SerializeField] Signal _playerHealthSignal;
 
     Rigidbody2D _rigidbody;
 
@@ -93,9 +95,14 @@ public class PlayerMovement : MonoBehaviour {
 
     //NOTE: These methods are duplicated on Enemy script.
     //In the future, it would be better centralize this logic in just one place!
-    public void CallKnock(Rigidbody2D knockedRB, float knockTime)
+    public void CallKnock(Rigidbody2D knockedRB, float knockTime, float damage)
     {
-        StartCoroutine(Knock(knockedRB, knockTime));
+        _currentHealth.InitialValue -= damage;
+        if (_currentHealth.InitialValue > 0)
+        {
+            _playerHealthSignal.Raise();
+            StartCoroutine(Knock(knockedRB, knockTime));
+        }
     }
 
     IEnumerator Knock(Rigidbody2D knockedRB, float knockTime)

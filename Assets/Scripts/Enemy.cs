@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour {
 
-    [SerializeField] int _health;
+    [SerializeField] float _health;
+    [SerializeField] FloatValue _maxHealth;
     [SerializeField] string _name;
     [SerializeField] int _baseAttack;
     [SerializeField] float _moveSpeed;
 
+
     CharacterState _currentState;
 
     #region Properties
-    public int Health
+    public float Health
     {
         get
         {
@@ -78,6 +80,11 @@ public class Enemy : MonoBehaviour {
     }
     #endregion
 
+    void Awake()
+    {
+        _health = _maxHealth.InitialValue;
+    }
+
     public void ChangeState(CharacterState newState)
     {
         if (CurrentState != newState)
@@ -88,9 +95,10 @@ public class Enemy : MonoBehaviour {
 
     //NOTE: These methods are duplicated on PlayerMovement script.
     //In the future, it would be better centralize this logic in just one place!
-    public void CallKnock(Rigidbody2D knockedRB, float knockTime)
+    public void CallKnock(Rigidbody2D knockedRB, float knockTime, float damage)
     {
         StartCoroutine(Knock(knockedRB, knockTime));
+        TakeDamage(damage);
     }
 
     IEnumerator Knock(Rigidbody2D knockedRB, float knockTime)
@@ -100,6 +108,15 @@ public class Enemy : MonoBehaviour {
             yield return new WaitForSeconds(knockTime);
             knockedRB.velocity = Vector2.zero;
             CurrentState = CharacterState.IDLE;
+        }
+    }
+
+    void TakeDamage(float damage)
+    {
+        Health -= damage;
+        if(Health <= 0)
+        {
+            gameObject.SetActive(false);
         }
     }
 }
