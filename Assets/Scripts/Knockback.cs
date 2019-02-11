@@ -12,16 +12,7 @@ public class Knockback : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        _player = other.GetComponent<PlayerMovement>();
-
-        if (other.gameObject.CompareTag("Breakable") && gameObject.CompareTag("Player"))
-        {
-            if (other.GetComponent<Pot>() != null)
-            {
-                other.GetComponent<Pot>().Break();
-                return;
-            }
-        }
+        _player = other.GetComponent<PlayerMovement>();        
 
         if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Player"))
         {
@@ -35,21 +26,19 @@ public class Knockback : MonoBehaviour {
 
                 if (other.gameObject.CompareTag("Enemy"))
                 {
-                    Debug.Log("trigger Enemy!");
                     _enemy = other.GetComponent<Enemy>();
-                    _enemy.CurrentState = EnemyState.STAGGER;
+                    _enemy.ChangeState(CharacterState.STAGGER);
                     _enemy.CallKnock(otherRB, _knockTime);
                     return;
                 }
 
                 if (other.gameObject.CompareTag("Player"))
                 {
-                    Debug.Log("trigger Player!");
-                    _player.CurrentState = PlayerState.STAGGER;
+                    _player.ChangeState(CharacterState.STAGGER);
                     _player.CallKnock(otherRB, _knockTime);
                     return;
                 }                
             }
-        }
+        }                                                           
     }
 }

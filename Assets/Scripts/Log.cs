@@ -5,7 +5,8 @@ using UnityEngine;
 public class Log : Enemy {
 
     Transform _target;
-    Rigidbody2D _rigidbody; 
+    Rigidbody2D _rigidbody;
+    Animator _animator;
 
     [SerializeField] float _chaseRadius;
     [SerializeField] float _attackRadius;
@@ -13,36 +14,69 @@ public class Log : Enemy {
 
     void Start()
     {
-        CurrentState = EnemyState.IDLE;
+        CurrentState = CharacterState.IDLE;
+
         _target = GameObject.FindGameObjectWithTag("Player").transform;
+
         _rigidbody = GetComponent<Rigidbody2D>();
+        _animator = GetComponent<Animator>();
     }
 
     void FixedUpdate()
     {
-        CheckDistance();
+        CheckTargetDistance();
     }
 
-    void CheckDistance()
+    void CheckTargetDistance()
     {
-        if(CurrentState == EnemyState.STAGGER || CurrentState == EnemyState.ATTACK)
+        if(CurrentState == CharacterState.STAGGER || CurrentState == CharacterState.ATTACK)
         {
             return;
         }
 
         if (Vector3.Distance(_target.position, transform.position) <= _chaseRadius && Vector3.Distance(_target.position, transform.position) > _attackRadius)
         {
-           Vector3 temp = Vector3.MoveTowards(transform.position, _target.position, MoveSpeed * Time.deltaTime);
-            ChangeState(EnemyState.WALK);
+            Vector3 temp = Vector3.MoveTowards(transform.position, _target.position, MoveSpeed * Time.deltaTime);
+            ChangeState(CharacterState.WALK);
+            ChangeAnimation(temp - transform.position);
             _rigidbody.MovePosition(temp);
-        } 
+            _animator.SetBool("wakeUp", true);
+        }
+        else if(Vector3.Distance(_target.position, transform.position) > _chaseRadius)
+        {
+            _animator.SetBool("wakeUp", false);
+        }
     }
 
-    void ChangeState(EnemyState newState)
+    void ChangeAnimation(Vector2 direction)
     {
-        if(CurrentState != newState)
+        if(Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
         {
-            CurrentState = newState;
+            if(direction.x > 0)
+            {
+                SetAnimatorFloat(Vector2.right);
+            }
+            else if(direction.x < 0)
+            {
+                SetAnimatorFloat(Vector2.left);
+            }
         }
+        else if (Mathf.Abs(direction.x) < Mathf.Abs(direction.y))
+        {
+            if (direction.y > 0)
+            {
+                SetAnimatorFloat(Vector2.up);
+            }
+            else if (direction.y < 0)
+            {
+                SetAnimatorFloat(Vector2.down);
+            }
+        }
+    }
+
+    void SetAnimatorFloat(Vector2 setVector)
+    {
+        _animator.SetFloat("moveX", setVector.x);
+        _animator.SetFloat("moveY", setVector.y);
     }
 }

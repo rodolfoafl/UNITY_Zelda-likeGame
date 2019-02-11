@@ -6290,7 +6290,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 2}
+    oldSize: {x: 2, y: 2}
     newSize: {x: 1, y: 2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -6330,7 +6330,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f69493fc656952a49b6463a5ca7f2809, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 6
+  _speed: 10
 --- !u!95 &238761048
 Animator:
   serializedVersion: 3
@@ -6365,7 +6365,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 2}
+    oldSize: {x: 2, y: 2}
     newSize: {x: 1, y: 2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -6389,13 +6389,14 @@ GameObject:
   - component: {fileID: 281520075}
   - component: {fileID: 281520076}
   - component: {fileID: 281520077}
+  - component: {fileID: 281520078}
   m_Layer: 0
   m_Name: RightHitBox
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &281520075
 Transform:
   m_ObjectHideFlags: 0
@@ -6415,7 +6416,7 @@ PolygonCollider2D:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 281520074}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -6452,6 +6453,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _thrust: 4
   _knockTime: 0.2
+--- !u!114 &281520078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 281520074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0dad78936d31e84caf06f89cd8d7bed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &295715077 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4985208911503896, guid: c34ba592abf17c248b1cfabed31f2e99,
@@ -21893,13 +21905,14 @@ GameObject:
   - component: {fileID: 1117608194}
   - component: {fileID: 1117608195}
   - component: {fileID: 1117608196}
+  - component: {fileID: 1117608197}
   m_Layer: 0
   m_Name: DownHitBox
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1117608194
 Transform:
   m_ObjectHideFlags: 0
@@ -21919,7 +21932,7 @@ PolygonCollider2D:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1117608193}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -21955,6 +21968,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _thrust: 4
   _knockTime: 0.2
+--- !u!114 &1117608197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1117608193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0dad78936d31e84caf06f89cd8d7bed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1292477821
 GameObject:
   m_ObjectHideFlags: 0
@@ -22036,13 +22060,14 @@ GameObject:
   - component: {fileID: 1465352335}
   - component: {fileID: 1465352336}
   - component: {fileID: 1465352337}
+  - component: {fileID: 1465352338}
   m_Layer: 0
   m_Name: LeftHitBox
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1465352335
 Transform:
   m_ObjectHideFlags: 0
@@ -22062,7 +22087,7 @@ PolygonCollider2D:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1465352334}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -22101,6 +22126,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _thrust: 4
   _knockTime: 0.2
+--- !u!114 &1465352338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1465352334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0dad78936d31e84caf06f89cd8d7bed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1525017904
 GameObject:
   m_ObjectHideFlags: 0
@@ -22111,13 +22147,14 @@ GameObject:
   - component: {fileID: 1525017905}
   - component: {fileID: 1525017906}
   - component: {fileID: 1525017907}
+  - component: {fileID: 1525017908}
   m_Layer: 0
   m_Name: UpHitBox
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1525017905
 Transform:
   m_ObjectHideFlags: 0
@@ -22137,7 +22174,7 @@ PolygonCollider2D:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1525017904}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -22177,6 +22214,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _thrust: 4
   _knockTime: 0.2
+--- !u!114 &1525017908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1525017904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0dad78936d31e84caf06f89cd8d7bed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1563477768 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4415177106015342, guid: 0e6d65b9b42cfe24eb06fa9508c958f6,

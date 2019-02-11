@@ -2,26 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pot : MonoBehaviour {
+public class Pot : Breakable {
 
     Animator _animator;
 
-    [SerializeField] float _deactivationTime;
+    public Animator Animator
+    {
+        get
+        {
+            return _animator;
+        }
+
+        set
+        {
+            _animator = value;
+        }
+    }
 
     void Start()
     {
         _animator = GetComponent<Animator>();
-    }
-
-    public void Break()
-    {
-        _animator.SetBool("break", true);
-        StartCoroutine(DeactivateObject());
-    }
-
-    IEnumerator DeactivateObject()
-    {
-        yield return new WaitForSeconds(_deactivationTime);
-        gameObject.SetActive(false);
     }
 }

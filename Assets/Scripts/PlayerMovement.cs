@@ -2,12 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public enum PlayerState
-{
-    WALK, ATTACK, INTERACT, STAGGER, IDLE
-}
-
 public class PlayerMovement : MonoBehaviour {
 
     [SerializeField] float _speed;
@@ -18,17 +12,17 @@ public class PlayerMovement : MonoBehaviour {
 
     Animator _animator;
 
-    PlayerState _currentState;
+    CharacterState _currentState;
 
     #region Properties
-    public PlayerState CurrentState
+    public CharacterState CurrentState
     {
         get
         {
             return _currentState;
         }
 
-        set
+        protected set
         {
             _currentState = value;
         }
@@ -36,7 +30,7 @@ public class PlayerMovement : MonoBehaviour {
     #endregion
 
 	void Start () {
-        _currentState = PlayerState.WALK;
+        _currentState = CharacterState.WALK;
         _rigidbody = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
         _animator.SetFloat("moveX", 0);
@@ -48,24 +42,32 @@ public class PlayerMovement : MonoBehaviour {
         _change.x = Input.GetAxisRaw("Horizontal");
         _change.y = Input.GetAxisRaw("Vertical");
 
-        if(Input.GetButtonDown("Attack") && _currentState != PlayerState.ATTACK && _currentState != PlayerState.STAGGER)
+        if(Input.GetButtonDown("Attack") && _currentState != CharacterState.ATTACK && _currentState != CharacterState.STAGGER)
         {
             StartCoroutine(Attack());
         }
-        else if (_currentState == PlayerState.WALK || _currentState == PlayerState.IDLE)
+        else if (_currentState == CharacterState.WALK || _currentState == CharacterState.IDLE)
         {
             UpdateAnimationAndMove();
         }
 	}
 
+    public void ChangeState(CharacterState newState)
+    {
+        if (CurrentState != newState)
+        {
+            CurrentState = newState;
+        }
+    }
+
     IEnumerator Attack()
     {
         _animator.SetBool("attacking", true);
-        _currentState = PlayerState.ATTACK;
+        _currentState = CharacterState.ATTACK;
         yield return null;
         _animator.SetBool("attacking", false);
         yield return new WaitForSeconds(0.3f);
-        _currentState = PlayerState.WALK;
+        _currentState = CharacterState.WALK;
     }
 
     void UpdateAnimationAndMove()
@@ -88,6 +90,9 @@ public class PlayerMovement : MonoBehaviour {
         _animator.SetBool("moving", true);
     }
 
+
+    //NOTE: These methods are duplicated on Enemy script.
+    //In the future, it would be better centralize this logic in just one place!
     public void CallKnock(Rigidbody2D knockedRB, float knockTime)
     {
         StartCoroutine(Knock(knockedRB, knockTime));
@@ -97,10 +102,9 @@ public class PlayerMovement : MonoBehaviour {
     {
         if (knockedRB != null)
         {
-            Debug.Log("player knocked!");
             yield return new WaitForSeconds(knockTime);
             knockedRB.velocity = Vector2.zero;
-            _currentState = PlayerState.IDLE;
+            _currentState = CharacterState.IDLE;
         }
     }
 }

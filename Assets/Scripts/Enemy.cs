@@ -2,14 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum EnemyState
-{
-    IDLE,
-    WALK,
-    ATTACK,
-    STAGGER
-}
-
 public class Enemy : MonoBehaviour {
 
     [SerializeField] int _health;
@@ -17,7 +9,7 @@ public class Enemy : MonoBehaviour {
     [SerializeField] int _baseAttack;
     [SerializeField] float _moveSpeed;
 
-    EnemyState _currentState;
+    CharacterState _currentState;
 
     #region Properties
     public int Health
@@ -72,20 +64,30 @@ public class Enemy : MonoBehaviour {
         }
     }
 
-    public EnemyState CurrentState
+    public CharacterState CurrentState
     {
         get
         {
             return _currentState;
         }
 
-        set
+        protected set
         {
             _currentState = value;
         }
     }
     #endregion
 
+    public void ChangeState(CharacterState newState)
+    {
+        if (CurrentState != newState)
+        {
+            CurrentState = newState;
+        }
+    }
+
+    //NOTE: These methods are duplicated on PlayerMovement script.
+    //In the future, it would be better centralize this logic in just one place!
     public void CallKnock(Rigidbody2D knockedRB, float knockTime)
     {
         StartCoroutine(Knock(knockedRB, knockTime));
@@ -95,10 +97,9 @@ public class Enemy : MonoBehaviour {
     {
         if (knockedRB != null)
         {
-            Debug.Log("enemy knocked!");
             yield return new WaitForSeconds(knockTime);
             knockedRB.velocity = Vector2.zero;
-            CurrentState = EnemyState.IDLE;
+            CurrentState = CharacterState.IDLE;
         }
     }
 }
