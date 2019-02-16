@@ -94,14 +94,18 @@ public class PlayerMovement : MonoBehaviour {
 
 
     //NOTE: These methods are duplicated on Enemy script.
-    //In the future, it would be better centralize this logic in just one place!
+    //In the future, it would be better to centralize this logic in just one place!
     public void CallKnock(Rigidbody2D knockedRB, float knockTime, float damage)
     {
-        _currentHealth.InitialValue -= damage;
-        if (_currentHealth.InitialValue > 0)
+        _currentHealth.RuntimeValue -= damage;
+        _playerHealthSignal.Raise();
+        if (_currentHealth.RuntimeValue > 0)
         {
-            _playerHealthSignal.Raise();
             StartCoroutine(Knock(knockedRB, knockTime));
+        }
+        else
+        {
+            this.gameObject.SetActive(false);
         }
     }
 

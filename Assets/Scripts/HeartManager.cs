@@ -10,6 +10,7 @@ public class HeartManager : MonoBehaviour {
     [SerializeField] Sprite _halfHeart;
     [SerializeField] Sprite _emptyHeart;
     [SerializeField] FloatValue _heartsContainers;
+    [SerializeField] FloatValue _playerCurrentHealth;
 
     void Start()
     {
@@ -22,6 +23,26 @@ public class HeartManager : MonoBehaviour {
         {
             _hearts[i].gameObject.SetActive(true);
             _hearts[i].sprite = _fullHeart;
+        }
+    }
+
+    public void UpdateHearts()
+    {
+        float tempHealth = _playerCurrentHealth.RuntimeValue / 2;
+        for (int i = 0; i < _heartsContainers.InitialValue; i++)
+        {
+            if(i <= tempHealth - 1)
+            {
+                _hearts[i].sprite = _fullHeart;
+            }
+            else if(i >= tempHealth)
+            {
+                _hearts[i].sprite = _emptyHeart;
+            }
+            else
+            {
+                _hearts[i].sprite = _halfHeart;
+            }
         }
     }
 }

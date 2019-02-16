@@ -11,4 +11,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cb963991ad464642baaee15302120de, type: 3}
   m_Name: HeartContainers
   m_EditorClassIdentifier: 
-  _initialValue: 0
+  _initialValue: 3

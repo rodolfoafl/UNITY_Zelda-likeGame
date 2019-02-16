@@ -129,7 +129,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &13622498
 RectTransform:
   m_ObjectHideFlags: 0
@@ -138,7 +138,7 @@ RectTransform:
   m_GameObject: {fileID: 13622497}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.0000031, y: 1.0000031, z: 1.0000031}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 968243722}
   m_RootOrder: 1
@@ -169,7 +169,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300006, guid: a225bb9ec9614e84aa8ebc8fca6eb01e, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -6400,6 +6400,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 10
+  _currentHealth: {fileID: 11400000, guid: bae3188443335204fb7d9151fcffe993, type: 2}
+  _playerHealthSignal: {fileID: 11400000, guid: f1ae8f224239a9348933aae2e0a441dc,
+    type: 2}
 --- !u!95 &238761048
 Animator:
   serializedVersion: 3
@@ -6896,7 +6899,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &685152376
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6905,7 +6908,7 @@ RectTransform:
   m_GameObject: {fileID: 685152375}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.0000031, y: 1.0000031, z: 1.0000031}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 968243722}
   m_RootOrder: 4
@@ -6936,7 +6939,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300006, guid: a225bb9ec9614e84aa8ebc8fca6eb01e, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -6996,7 +6999,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _thrust: 4
   _knockTime: 0.2
-  _damage: 0
+  _damage: 1
 --- !u!1 &849244322
 GameObject:
   m_ObjectHideFlags: 0
@@ -7083,9 +7086,9 @@ MonoBehaviour:
   _signalEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: 
-        m_Mode: 6
+      - m_Target: {fileID: 968243724}
+        m_MethodName: UpdateHearts
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -7255,6 +7258,7 @@ GameObject:
   m_Component:
   - component: {fileID: 968243722}
   - component: {fileID: 968243723}
+  - component: {fileID: 968243724}
   m_Layer: 5
   m_Name: HeartContainer
   m_TagString: Untagged
@@ -7307,6 +7311,29 @@ MonoBehaviour:
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
   m_ChildControlHeight: 0
+--- !u!114 &968243724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 968243721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a3fd76d3ab32884e86a5394d6d13351, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hearts:
+  - {fileID: 1384508157}
+  - {fileID: 13622499}
+  - {fileID: 1952146439}
+  - {fileID: 1280426700}
+  - {fileID: 685152377}
+  _fullHeart: {fileID: 21300006, guid: a225bb9ec9614e84aa8ebc8fca6eb01e, type: 3}
+  _halfHeart: {fileID: 21300010, guid: a225bb9ec9614e84aa8ebc8fca6eb01e, type: 3}
+  _emptyHeart: {fileID: 21300014, guid: a225bb9ec9614e84aa8ebc8fca6eb01e, type: 3}
+  _heartsContainers: {fileID: 11400000, guid: cd3fa6e92c3092b47971a3c212b98cdb, type: 2}
+  _playerCurrentHealth: {fileID: 11400000, guid: bae3188443335204fb7d9151fcffe993,
+    type: 2}
 --- !u!1 &1007531669
 GameObject:
   m_ObjectHideFlags: 0
@@ -22302,7 +22329,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1280426699
 RectTransform:
   m_ObjectHideFlags: 0
@@ -22311,7 +22338,7 @@ RectTransform:
   m_GameObject: {fileID: 1280426698}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.0000031, y: 1.0000031, z: 1.0000031}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 968243722}
   m_RootOrder: 3
@@ -22342,7 +22369,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300006, guid: a225bb9ec9614e84aa8ebc8fca6eb01e, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -22400,7 +22427,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1384508156
 RectTransform:
   m_ObjectHideFlags: 0
@@ -22440,7 +22467,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300006, guid: a225bb9ec9614e84aa8ebc8fca6eb01e, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -23011,7 +23038,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1952146438
 RectTransform:
   m_ObjectHideFlags: 0
@@ -23020,7 +23047,7 @@ RectTransform:
   m_GameObject: {fileID: 1952146437}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.0000031, y: 1.0000031, z: 1.0000031}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 968243722}
   m_RootOrder: 2
@@ -23051,7 +23078,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300006, guid: a225bb9ec9614e84aa8ebc8fca6eb01e, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
