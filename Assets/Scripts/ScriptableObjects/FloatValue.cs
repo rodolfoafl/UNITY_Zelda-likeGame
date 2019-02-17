@@ -4,7 +4,7 @@ using UnityEngine;
 
 [CreateAssetMenu]
 public class FloatValue : ScriptableObject, ISerializationCallbackReceiver {
-    float _initialValue;
+    public float _initialValue;
 
     [HideInInspector]
     float _runtimeValue;
