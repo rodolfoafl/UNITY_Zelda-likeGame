@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class Enemy : MonoBehaviour {
 
@@ -10,6 +11,7 @@ public class Enemy : MonoBehaviour {
     [SerializeField] int _baseAttack;
     [SerializeField] float _moveSpeed;
 
+    SpriteRenderer _spriteRenderer;
 
     CharacterState _currentState;
 
@@ -83,6 +85,7 @@ public class Enemy : MonoBehaviour {
     void Awake()
     {
         _health = _maxHealth.InitialValue;
+        _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     public void ChangeState(CharacterState newState)
@@ -114,9 +117,11 @@ public class Enemy : MonoBehaviour {
     void TakeDamage(float damage)
     {
         Health -= damage;
+        _spriteRenderer.DOColor(Color.red, .5f).From().SetEase(Ease.InFlash);
         if(Health <= 0)
         {
-            gameObject.SetActive(false);
+            _spriteRenderer.DOFade(0f, .5f);
+            Destroy(gameObject, .5f);            
         }
     }
 }

@@ -8,6 +8,8 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField] FloatValue _currentHealth;
     [SerializeField] Signal _playerHealthSignal;
 
+    [SerializeField] Vector2Value _transitionStartingPosition;
+
     Rigidbody2D _rigidbody;
 
     Vector3 _change;
@@ -37,6 +39,7 @@ public class PlayerMovement : MonoBehaviour {
         _animator = GetComponent<Animator>();
         _animator.SetFloat("moveX", 0);
         _animator.SetFloat("moveY", -1);
+        transform.position = _transitionStartingPosition.InitialValue;
     }
 	
 	void Update () {

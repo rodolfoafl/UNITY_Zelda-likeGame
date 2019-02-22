@@ -3,5 +3,6 @@
     IDLE,
     WALK,
     ATTACK,
-    STAGGER
+    STAGGER,
+    DEAD
 }
