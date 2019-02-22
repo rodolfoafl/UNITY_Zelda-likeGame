@@ -4,13 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Sign : MonoBehaviour {
-
-    [SerializeField] GameObject _playerActionPopup;
     [SerializeField] GameObject _dialogBox;
-
     [SerializeField] Text _dialogText;
-
     [SerializeField] string _dialog;
+    [SerializeField] Signal _popUpOn;
+    [SerializeField] Signal _popUpOff;
 
     bool _playerInRange;
 
@@ -20,12 +18,12 @@ public class Sign : MonoBehaviour {
             if (_dialogBox.activeInHierarchy)
             {
                 _dialogBox.SetActive(false);
-                _playerActionPopup.SetActive(true);
+                _popUpOn.Raise();
             }
             else
             {
                 _dialogBox.SetActive(true);
-                _playerActionPopup.SetActive(false);
+                _popUpOff.Raise();
                 _dialogText.text = _dialog;
             }
         }
@@ -36,7 +34,7 @@ public class Sign : MonoBehaviour {
         if (other.CompareTag("Player"))
         {
             _playerInRange = true;
-            _playerActionPopup.SetActive(true);
+            _popUpOn.Raise();
         }
     }
 
@@ -44,8 +42,8 @@ public class Sign : MonoBehaviour {
     {
         if (other.CompareTag("Player"))
         {
+            _popUpOff.Raise();
             _playerInRange = false;
-            _playerActionPopup.SetActive(false);
             _dialogBox.SetActive(false);
         }
     }
