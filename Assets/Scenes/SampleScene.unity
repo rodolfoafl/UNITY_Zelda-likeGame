@@ -4806,8 +4806,7 @@ MonoBehaviour:
   _dialogBox: {fileID: 1786516571}
   _dialogText: {fileID: 960901928}
   _dialog: All work and no play makes Jack a dull boy
-  _popUpOn: {fileID: 11400000, guid: f1f7be4dc6be6564c8647ddd4af293c1, type: 2}
-  _popUpOff: {fileID: 11400000, guid: 98111a9ef55c2c34396e69c9c14582c4, type: 2}
+  _togglePopUp: {fileID: 11400000, guid: f1f7be4dc6be6564c8647ddd4af293c1, type: 2}
 --- !u!1 &726061280
 GameObject:
   m_ObjectHideFlags: 0
@@ -16462,7 +16461,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1125066933}
-        m_MethodName: Enable
+        m_MethodName: ToggleActive
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -16486,34 +16485,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _popUp: {fileID: 959480658}
---- !u!114 &1125066934
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1125066931}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6ee9ea0f06c1e64babe98a87334e1d7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _signal: {fileID: 11400000, guid: 98111a9ef55c2c34396e69c9c14582c4, type: 2}
-  _signalEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1125066933}
-        m_MethodName: Disable
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!1 &1292477821
 GameObject:
   m_ObjectHideFlags: 0

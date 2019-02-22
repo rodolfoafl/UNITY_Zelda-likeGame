@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+namespace ZeldaTutorial.Player
+{
 public class HeartManager : MonoBehaviour {
 
     [SerializeField] Image[] _hearts;
@@ -45,4 +47,5 @@ public class HeartManager : MonoBehaviour {
             }
         }
     }
+}
 }

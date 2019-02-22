@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+namespace ZeldaTutorial.Objects{
 public class Pot : Breakable {
 
     Animator _animator;
@@ -23,4 +24,5 @@ public class Pot : Breakable {
     {
         _animator = GetComponent<Animator>();
     }
+}
 }

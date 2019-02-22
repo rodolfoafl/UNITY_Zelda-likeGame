@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 
+
+namespace ZeldaTutorial.Game{
 public class RoomMove : MonoBehaviour {
 
     [SerializeField] Vector2 _cameraChange;
@@ -50,3 +52,5 @@ public class RoomMove : MonoBehaviour {
         _text.SetActive(false);
     }
 }
+}
+

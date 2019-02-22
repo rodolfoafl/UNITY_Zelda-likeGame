@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+namespace ZeldaTutorial.Game
+{
+    
 public class CameraMovement : MonoBehaviour {
 
     [SerializeField] Transform _target;
@@ -49,4 +52,5 @@ public class CameraMovement : MonoBehaviour {
             transform.position = Vector3.Lerp(transform.position, targetPosition, _smoothing);
         }
     }
+}
 }

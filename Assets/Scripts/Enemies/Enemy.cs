@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
+namespace ZeldaTutorial.Enemies{
+
 public class Enemy : MonoBehaviour {
 
     [SerializeField] float _health;
@@ -124,4 +126,5 @@ public class Enemy : MonoBehaviour {
             Destroy(gameObject, .5f);            
         }
     }
+}
 }

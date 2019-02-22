@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+namespace ZeldaTutorial.Player
+{
 public class PlayerMovement : MonoBehaviour {
 
     [SerializeField] float _speed;
@@ -121,4 +123,5 @@ public class PlayerMovement : MonoBehaviour {
             _currentState = CharacterState.IDLE;
         }
     }
+}
 }

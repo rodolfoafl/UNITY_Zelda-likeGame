@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+namespace ZeldaTutorial.Enemies
+{
+    
 public class Log : Enemy {
 
     Transform _target;
@@ -79,4 +82,5 @@ public class Log : Enemy {
         _animator.SetFloat("moveX", setVector.x);
         _animator.SetFloat("moveY", setVector.y);
     }
+}
 }

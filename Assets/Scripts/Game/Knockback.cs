@@ -1,7 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using ZeldaTutorial.Enemies;
+using ZeldaTutorial.Player;
 
+namespace ZeldaTutorial.Game{
 public class Knockback : MonoBehaviour {
 
     [SerializeField] float _thrust;
@@ -45,4 +48,5 @@ public class Knockback : MonoBehaviour {
             }
         }                                                           
     }
+}
 }

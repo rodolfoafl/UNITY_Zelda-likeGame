@@ -1,7 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using ZeldaTutorial.Objects;
 
+namespace ZeldaTutorial.Player
+{
 public class CollideWithBreakableObject : MonoBehaviour {
 
     Breakable _object;
@@ -18,4 +21,5 @@ public class CollideWithBreakableObject : MonoBehaviour {
             }
         }
     }
+}
 }

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+namespace ZeldaTutorial.Objects{
 public class Breakable : MonoBehaviour
 {
     [SerializeField] float _deactivationTime;
@@ -22,4 +24,5 @@ public class Breakable : MonoBehaviour
         yield return new WaitForSeconds(_deactivationTime);
         gameObject.SetActive(false);
     }
+}
 }
