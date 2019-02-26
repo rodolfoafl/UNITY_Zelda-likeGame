@@ -9,8 +9,9 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField] float _speed;
     [SerializeField] FloatValue _currentHealth;
     [SerializeField] Signal _playerHealthSignal;
-
     [SerializeField] Vector2Value _transitionStartingPosition;
+    [SerializeField] Inventory _inventory;
+    [SerializeField] SpriteRenderer _collectedItemSprite;
 
     Rigidbody2D _rigidbody;
 
@@ -45,6 +46,11 @@ public class PlayerMovement : MonoBehaviour {
     }
 	
 	void Update () {
+        if(CurrentState == CharacterState.INTERACT)
+        {
+            return;
+        }
+
         _change = Vector2.zero;
         _change.x = Input.GetAxisRaw("Horizontal");
         _change.y = Input.GetAxisRaw("Vertical");
@@ -74,7 +80,29 @@ public class PlayerMovement : MonoBehaviour {
         yield return null;
         _animator.SetBool("attacking", false);
         yield return new WaitForSeconds(0.3f);
-        _currentState = CharacterState.WALK;
+        if(CurrentState != CharacterState.INTERACT)
+        {
+            ChangeState(CharacterState.WALK);
+        }
+    }
+
+    public void CollectItem()
+    {
+        if(_inventory.CurrentItem != null){
+            if(CurrentState != CharacterState.INTERACT)
+            {
+                _animator.SetBool("getItem", true);
+                ChangeState(CharacterState.INTERACT);
+                _collectedItemSprite.sprite = _inventory.CurrentItem.ItemSprite;
+            }
+            else
+            {
+                _animator.SetBool("getItem", false);
+                ChangeState(CharacterState.IDLE);
+                _collectedItemSprite.sprite = null;
+                _inventory.CurrentItem = null;
+            }
+        }
     }
 
     void UpdateAnimationAndMove()

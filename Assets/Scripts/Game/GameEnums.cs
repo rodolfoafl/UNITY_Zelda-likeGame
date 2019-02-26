@@ -4,5 +4,6 @@
     WALK,
     ATTACK,
     STAGGER,
-    DEAD
+    DEAD,
+    INTERACT
 }
