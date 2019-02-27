@@ -15,7 +15,73 @@ public class Log : Enemy {
     [SerializeField] float _attackRadius;
     [SerializeField] Transform _homePosition;
 
-    void Start()
+    #region Properties
+        public Transform Target
+        {
+            get
+            {
+                return _target;
+            }
+
+            set
+            {
+                _target = value;
+            }
+        }
+
+        public Rigidbody2D Rigidbody
+        {
+            get
+            {
+                return _rigidbody;
+            }
+
+            set
+            {
+                _rigidbody = value;
+            }
+        }
+
+        public Animator Animator
+        {
+            get
+            {
+                return _animator;
+            }
+
+            set
+            {
+                _animator = value;
+            }
+        }
+
+        public float ChaseRadius
+        {
+            get
+            {
+                return _chaseRadius;
+            }
+
+            set
+            {
+                _chaseRadius = value;
+            }
+        }
+
+        public float AttackRadius
+        {
+            get
+            {
+                return _attackRadius;
+            }
+
+            set
+            {
+                _attackRadius = value;
+            }
+        }
+        #endregion
+        void Start()
     {
         CurrentState = CharacterState.IDLE;
 
@@ -23,6 +89,7 @@ public class Log : Enemy {
 
         _rigidbody = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
+        _animator.SetBool("wakeUp", true);
     }
 
     void FixedUpdate()
@@ -30,7 +97,7 @@ public class Log : Enemy {
         CheckTargetDistance();
     }
 
-    void CheckTargetDistance()
+    public virtual void CheckTargetDistance()
     {
         if(CurrentState == CharacterState.STAGGER || CurrentState == CharacterState.ATTACK)
         {
@@ -51,7 +118,7 @@ public class Log : Enemy {
         }
     }
 
-    void ChangeAnimation(Vector2 direction)
+    public void ChangeAnimation(Vector2 direction)
     {
         if(Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
         {
