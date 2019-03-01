@@ -41,8 +41,10 @@ namespace ZeldaTutorial.Objects{
 		void CheckChestState(bool isOpen){
 			if(!isOpen)
 			{
-				_dialogBox.SetActive(true);
-				_dialogText.text = _content.ItemDescription;
+				if(_dialogBox != null && _dialogText != null){
+					_dialogBox.SetActive(true);
+					_dialogText.text = _content.ItemDescription;
+				}
 				_playerInventory.AddItem(_content);
 				_playerInventory.CurrentItem = _content;
 				_dropItem.Raise();
@@ -52,7 +54,9 @@ namespace ZeldaTutorial.Objects{
 			}
 			else
 			{
-				_dialogBox.SetActive(false);
+				if(_dialogBox != null){
+					_dialogBox.SetActive(false);
+				}
 				_dropItem.Raise();
 			}
 		}
