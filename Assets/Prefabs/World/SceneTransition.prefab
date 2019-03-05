@@ -78,3 +78,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sceneToLoad: SampleScene
+  _playerPosition: {x: 0, y: 0}
+  _playerDesiredPosition: {fileID: 0}
+  _transitionFadePanel: {fileID: 0}
+  _fadeWait: 0

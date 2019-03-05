@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour {
     [SerializeField] string _name;
     [SerializeField] int _baseAttack;
     [SerializeField] float _moveSpeed;
+    [SerializeField] GameObject _deathEffect;
 
     SpriteRenderer _spriteRenderer;
 
@@ -98,6 +99,15 @@ public class Enemy : MonoBehaviour {
         }
     }
 
+    void DeathEffect()
+    {
+        if(_deathEffect != null)
+        {
+            GameObject effect = Instantiate(_deathEffect, transform.position, Quaternion.identity);
+            Destroy(effect, 1f);
+        }
+    }
+
     //NOTE: These methods are duplicated on PlayerMovement script.
     //In the future, it would be better centralize this logic in just one place!
     public void CallKnock(Rigidbody2D knockedRB, float knockTime, float damage)
@@ -122,8 +132,9 @@ public class Enemy : MonoBehaviour {
         _spriteRenderer.DOColor(Color.red, .5f).From().SetEase(Ease.InFlash);
         if(Health <= 0)
         {
-            _spriteRenderer.DOFade(0f, .5f);
-            Destroy(gameObject, .5f);            
+            //_spriteRenderer.DOFade(0f, .5f);
+            DeathEffect();
+            Destroy(gameObject);            
         }
     }
 }

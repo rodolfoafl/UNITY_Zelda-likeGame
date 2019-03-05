@@ -79,3 +79,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cameraChange: {x: 24, y: 0}
   _playerChange: {x: 2, y: 0, z: 0}
+  _needText: 0
+  _placeName: 
+  _text: {fileID: 0}
+  _placeText: {fileID: 0}
+  _placeTextDuration: 0
