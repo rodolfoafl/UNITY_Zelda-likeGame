@@ -6,6 +6,7 @@ using UnityEngine;
 namespace ZeldaTutorial.Objects{
 public class Breakable : MonoBehaviour
 {
+    [Header("Attributes")]
     [SerializeField] float _deactivationTime;
     [SerializeField] bool _dropsLoots;
     [SerializeField] GameObject _loot;

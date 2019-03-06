@@ -5,10 +5,10 @@ using ZeldaTutorial.Enemies;
 
 public class PatrolLog : Log {
 
-	[Header("PatrolVariables")]
+	[Header("Attributes")]
 	[SerializeField] Transform[] _path;
-	[SerializeField] int _currentPoint;
-	[SerializeField] Transform _currentGoal;
+    [SerializeField] Transform _currentGoal;
+    [SerializeField] int _currentPoint;
 	[SerializeField] float _roundingDistance;
 
 	public override void CheckTargetDistance()

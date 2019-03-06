@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PowerUp : MonoBehaviour {
 
+    [Header("Signals")]
 	[SerializeField] Signal _powerUpSignal;
 
     public Signal PowerUpSignal

@@ -5,11 +5,19 @@ using UnityEngine;
 namespace ZeldaTutorial.Player
 {
 public class PlayerMovement : MonoBehaviour {
-
+    
+    [Header("Movement")]
     [SerializeField] float _speed;
-    [SerializeField] FloatValue _currentHealth;
+
+    [Header("Signals")]
     [SerializeField] Signal _playerHealthSignal;
+    [SerializeField] Signal _screeKickSignal;
+
+    [Header("ScriptableObjects")]
+    [SerializeField] FloatValue _currentHealth;
     [SerializeField] Vector2Value _transitionStartingPosition;
+
+    [Header("Inventory")]
     [SerializeField] Inventory _inventory;
     [SerializeField] SpriteRenderer _collectedItemSprite;
 
@@ -144,6 +152,7 @@ public class PlayerMovement : MonoBehaviour {
 
     IEnumerator Knock(Rigidbody2D knockedRB, float knockTime)
     {
+        _screeKickSignal.Raise();
         if (knockedRB != null)
         {
             yield return new WaitForSeconds(knockTime);

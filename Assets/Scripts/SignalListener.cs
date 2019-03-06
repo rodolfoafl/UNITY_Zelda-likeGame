@@ -5,7 +5,10 @@ using UnityEngine.Events;
 
 public class SignalListener : MonoBehaviour {
 
+    [Header("Signals")]
     [SerializeField] Signal _signal;
+
+    [Header("UnityEvent")]
     [SerializeField] UnityEvent _signalEvent;
 
     public void OnSignalRaise()

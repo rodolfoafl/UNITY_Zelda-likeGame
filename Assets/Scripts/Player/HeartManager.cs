@@ -7,10 +7,13 @@ namespace ZeldaTutorial.Player
 {
 public class HeartManager : MonoBehaviour {
 
+    [Header("Sprites")]
     [SerializeField] Image[] _hearts;
     [SerializeField] Sprite _fullHeart;
     [SerializeField] Sprite _halfHeart;
     [SerializeField] Sprite _emptyHeart;
+
+    [Header("ScriptableObjects")]
     [SerializeField] FloatValue _heartsContainers;
     [SerializeField] FloatValue _playerCurrentHealth;
 

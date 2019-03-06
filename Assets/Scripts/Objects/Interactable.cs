@@ -4,7 +4,10 @@ using UnityEngine;
 
 namespace ZeldaTutorial.Objects{
 	public class Interactable : MonoBehaviour {
+
+        [Header("Signals")]
 	    [SerializeField] Signal _togglePopUp;
+
 	    bool _playerInRange;
 
 		#region Properties

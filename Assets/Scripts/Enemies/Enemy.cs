@@ -7,11 +7,16 @@ namespace ZeldaTutorial.Enemies{
 
 public class Enemy : MonoBehaviour {
 
+    [Header("Attributes")]
     [SerializeField] float _health;
-    [SerializeField] FloatValue _maxHealth;
     [SerializeField] string _name;
     [SerializeField] int _baseAttack;
     [SerializeField] float _moveSpeed;
+
+    [Header("ScriptableObjects")]
+    [SerializeField] FloatValue _maxHealth;
+
+    [Header("Effects")]
     [SerializeField] GameObject _deathEffect;
 
     SpriteRenderer _spriteRenderer;

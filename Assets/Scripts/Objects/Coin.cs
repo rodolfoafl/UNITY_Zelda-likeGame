@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Coin : PowerUp {
 
+    [Header("PlayerInventory")]
     [SerializeField] Inventory _playerInventory;
 
     public void OnTriggerEnter2D(Collider2D other)

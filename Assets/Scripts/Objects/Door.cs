@@ -10,7 +10,11 @@ public enum DoorType{
 }
 
 public class Door : Interactable {
+
+    [Header("Attributes")]
 	[SerializeField] DoorType _doorType;
+
+    [Header("PlayerInventory")]
 	[SerializeField] Inventory _playerInventory;
 	
 	SpriteRenderer _doorSprite;

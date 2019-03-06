@@ -6,11 +6,20 @@ using UnityEngine.UI;
 namespace ZeldaTutorial.Objects{
 	
 	public class TreasureChest : Interactable {
+
+        [Header("Attributes")]
 		[SerializeField] Item _content;
-		[SerializeField] Inventory _playerInventory;
+
+        [Header("DialogBox")]
+        [SerializeField] GameObject _dialogBox;
+        [SerializeField] Text _dialogText;
+
+        [Header("PlayerInventory")]
+        [SerializeField] Inventory _playerInventory;
+
+        [Header("Signals")]
 		[SerializeField] Signal _dropItem;
-		[SerializeField] GameObject _dialogBox;
-		[SerializeField] Text _dialogText;
+
 
 		bool _isOpen = false;
 		Animator _animator;

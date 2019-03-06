@@ -7,7 +7,9 @@ namespace ZeldaTutorial.Player
 
 public class ActionPopUp : MonoBehaviour {
 
+    [Header("PopUp")]
 	[SerializeField] GameObject _popUp;
+
 	bool _isActive = false;
 
 	public void ToggleActive(){

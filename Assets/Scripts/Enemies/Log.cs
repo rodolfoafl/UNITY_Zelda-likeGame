@@ -6,14 +6,15 @@ namespace ZeldaTutorial.Enemies
 {
     
 public class Log : Enemy {
+    
+    [Header("Attributes")]
+    [SerializeField] float _chaseRadius;
+    [SerializeField] float _attackRadius;
+    [SerializeField] Transform _homePosition;
 
     Transform _target;
     Rigidbody2D _rigidbody;
     Animator _animator;
-
-    [SerializeField] float _chaseRadius;
-    [SerializeField] float _attackRadius;
-    [SerializeField] Transform _homePosition;
 
     #region Properties
         public Transform Target
@@ -81,7 +82,7 @@ public class Log : Enemy {
             }
         }
         #endregion
-        void Start()
+    void Start()
     {
         CurrentState = CharacterState.IDLE;
 

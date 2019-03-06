@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class Heart : PowerUp {
 
-	[SerializeField] FloatValue _playerHealth;
+    [Header("Amount")]
 	[SerializeField] float _amountToIncrease;
-	[SerializeField] FloatValue _heartContainers;
 
-	public void OnTriggerEnter2D(Collider2D other)
+    [Header("ScriptableObjects")]
+	[SerializeField] FloatValue _heartContainers;
+    [SerializeField] FloatValue _playerHealth;
+
+    public void OnTriggerEnter2D(Collider2D other)
 	{
 		if(other.CompareTag("Player") && !other.isTrigger)
 		{

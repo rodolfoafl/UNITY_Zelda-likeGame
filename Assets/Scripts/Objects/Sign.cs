@@ -6,6 +6,8 @@ using UnityEngine.UI;
 namespace ZeldaTutorial.Objects
 {
     public class Sign : Interactable {
+
+        [Header("DialogBox")]
         [SerializeField] GameObject _dialogBox;
         [SerializeField] Text _dialogText;
         [SerializeField] string _dialog;
