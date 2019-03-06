@@ -17,6 +17,9 @@ namespace ZeldaTutorial.Objects{
         [Header("PlayerInventory")]
         [SerializeField] Inventory _playerInventory;
 
+        [Header("ScriptableObjects")]
+        [SerializeField] BoolValue _storedOpen;
+
         [Header("Signals")]
 		[SerializeField] Signal _dropItem;
 
@@ -24,6 +27,7 @@ namespace ZeldaTutorial.Objects{
 		bool _isOpen = false;
 		Animator _animator;
 
+        #region Properties
         public Item Contents
         {
             get
@@ -36,9 +40,15 @@ namespace ZeldaTutorial.Objects{
                 _content = value;
             }
         }
-   
-		void Start(){
+        #endregion
+
+        void Start(){
 			_animator = GetComponent<Animator>();
+            _isOpen = _storedOpen.RuntimeValue;
+            if (_isOpen)
+            {
+                _animator.SetTrigger("chestOpen");
+            }
 		}
 
 		void Update () {
@@ -60,6 +70,7 @@ namespace ZeldaTutorial.Objects{
 				_isOpen = true;
 				TogglePopUp.Raise();
 				_animator.SetTrigger("chestOpen");
+                _storedOpen.RuntimeValue = _isOpen;
 			}
 			else
 			{

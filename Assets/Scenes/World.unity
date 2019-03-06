@@ -6702,7 +6702,7 @@ Prefab:
     - target: {fileID: 114918785491163548, guid: 706bbf3638cba5346bdda0255819b177,
         type: 2}
       propertyPath: _sceneToLoad
-      value: World
+      value: Dungeon
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 706bbf3638cba5346bdda0255819b177, type: 2}
@@ -25110,6 +25110,21 @@ Prefab:
       propertyPath: _dialogText
       value: 
       objectReference: {fileID: 960901928}
+    - target: {fileID: 1804485158655756, guid: 8555ad21df88ab941ac7342b125bdd23, type: 2}
+      propertyPath: m_Name
+      value: TreasureChestA
+      objectReference: {fileID: 0}
+    - target: {fileID: 1804485158655756, guid: 8555ad21df88ab941ac7342b125bdd23, type: 2}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000,
+        type: 0}
+    - target: {fileID: 114740376053062414, guid: 8555ad21df88ab941ac7342b125bdd23,
+        type: 2}
+      propertyPath: _storedOpen
+      value: 
+      objectReference: {fileID: 11400000, guid: 8e6ed1b35f7fd4d4882c02b7dfae6268,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8555ad21df88ab941ac7342b125bdd23, type: 2}
   m_IsPrefabAsset: 0
