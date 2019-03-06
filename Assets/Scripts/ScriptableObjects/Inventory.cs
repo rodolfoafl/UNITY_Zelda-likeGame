@@ -6,7 +6,8 @@ using UnityEngine;
 public class Inventory : ScriptableObject {
     [SerializeField] Item _currentItem;
     List<Item> _items = new List<Item>();
-    int _numberOfKeys;
+    public int _numberOfKeys;
+    public int _numberOfCoins;
 
     #region Properties
     public Item CurrentItem
@@ -45,6 +46,19 @@ public class Inventory : ScriptableObject {
         set
         {
             _numberOfKeys = value;
+        }
+    }
+
+    public int NumberOfCoins
+    {
+        get
+        {
+            return _numberOfCoins;
+        }
+
+        set
+        {
+            _numberOfCoins = value;
         }
     }
     #endregion
