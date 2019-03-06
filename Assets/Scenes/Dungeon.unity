@@ -162,6 +162,18 @@ Prefab:
       propertyPath: _target
       value: 
       objectReference: {fileID: 1840606382}
+    - target: {fileID: 114954418701423148, guid: 3f5c41612bcdc604fac8c56e743df759,
+        type: 2}
+      propertyPath: _cameraMax
+      value: 
+      objectReference: {fileID: 11400000, guid: ac7fc24daa75c3148ab2924bf73aa454,
+        type: 2}
+    - target: {fileID: 114954418701423148, guid: 3f5c41612bcdc604fac8c56e743df759,
+        type: 2}
+      propertyPath: _cameraMin
+      value: 
+      objectReference: {fileID: 11400000, guid: f94e7af2fd2ff9c4d812171619553fd7,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f5c41612bcdc604fac8c56e743df759, type: 2}
   m_IsPrefabAsset: 0

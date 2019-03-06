@@ -20,6 +20,7 @@ public class Enemy : MonoBehaviour {
     [SerializeField] GameObject _deathEffect;
 
     SpriteRenderer _spriteRenderer;
+    float _deathEffectDelay = 1f;
 
     CharacterState _currentState;
 
@@ -109,7 +110,7 @@ public class Enemy : MonoBehaviour {
         if(_deathEffect != null)
         {
             GameObject effect = Instantiate(_deathEffect, transform.position, Quaternion.identity);
-            Destroy(effect, 1f);
+            Destroy(effect, _deathEffectDelay);
         }
     }
 
