@@ -49,8 +49,8 @@ namespace ZeldaTutorial.Game
 
         void Start()
         {
-            MaxPosition = _cameraMax.InitialValue;
-            MinPosition = _cameraMin.InitialValue;
+            MaxPosition = _cameraMax.DefaultValue;
+            MinPosition = _cameraMin.DefaultValue;
         }
     
         void LateUpdate()

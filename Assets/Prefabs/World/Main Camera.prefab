@@ -152,3 +152,5 @@ MonoBehaviour:
   _smoothing: 1
   _maxPosition: {x: -6, y: 15}
   _minPosition: {x: -17.5, y: 0}
+  _cameraMin: {fileID: 11400000, guid: 699b3774f848e764ea628298cd315e5f, type: 2}
+  _cameraMax: {fileID: 11400000, guid: 87483ded0d5c9144195012cdb48730c6, type: 2}

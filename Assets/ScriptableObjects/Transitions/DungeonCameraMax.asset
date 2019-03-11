@@ -11,5 +11,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 525efc500a8dd0a4b9416843313172b5, type: 3}
   m_Name: DungeonCameraMax
   m_EditorClassIdentifier: 
-  _initialValue: {x: -6, y: 15}
-  _defaultValue: {x: -6, y: 15}
+  _initialValue: {x: 0, y: 15}
+  _defaultValue: {x: 0, y: 15}

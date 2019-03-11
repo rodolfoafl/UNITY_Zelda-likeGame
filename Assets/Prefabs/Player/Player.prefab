@@ -459,7 +459,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df6f1ee3b0193d941a7c3c5186009f47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _thrust: 4
+  _thrust: 2
   _knockTime: 0.2
   _damage: 1
 --- !u!114 &114155916026964704
@@ -507,7 +507,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df6f1ee3b0193d941a7c3c5186009f47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _thrust: 4
+  _thrust: 2
   _knockTime: 0.2
   _damage: 1
 --- !u!114 &114392329571702422
@@ -521,7 +521,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df6f1ee3b0193d941a7c3c5186009f47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _thrust: 4
+  _thrust: 2
   _knockTime: 0.2
   _damage: 1
 --- !u!114 &114471804863921414
@@ -574,7 +574,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df6f1ee3b0193d941a7c3c5186009f47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _thrust: 4
+  _thrust: 2
   _knockTime: 0.2
   _damage: 1
 --- !u!114 &114879548093194852
@@ -600,9 +600,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 5
-  _currentHealth: {fileID: 11400000, guid: bae3188443335204fb7d9151fcffe993, type: 2}
   _playerHealthSignal: {fileID: 11400000, guid: f1ae8f224239a9348933aae2e0a441dc,
     type: 2}
+  _screeKickSignal: {fileID: 11400000, guid: 391f304572ea1484ba4d7dfc15d4af0e, type: 2}
+  _currentHealth: {fileID: 11400000, guid: bae3188443335204fb7d9151fcffe993, type: 2}
   _transitionStartingPosition: {fileID: 11400000, guid: a9bd57b5dcbb366488f55b22cdfe96bc,
     type: 2}
   _inventory: {fileID: 11400000, guid: ae99e38889ca3e0478ca48da4554b5f9, type: 2}

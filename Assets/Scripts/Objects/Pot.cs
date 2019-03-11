@@ -3,26 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace ZeldaTutorial.Objects{
-public class Pot : Breakable {
+    public class Pot : Breakable {
 
-    Animator _animator;
+        Animator _animator;
 
-    public Animator Animator
-    {
-        get
+        public Animator Animator
         {
-            return _animator;
+            get
+            {
+                return _animator;
+            }
+
+            set
+            {
+                _animator = value;
+            }
         }
 
-        set
+        void Start()
         {
-            _animator = value;
+            _animator = GetComponent<Animator>();
         }
     }
-
-    void Start()
-    {
-        _animator = GetComponent<Animator>();
-    }
-}
 }

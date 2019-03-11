@@ -10,7 +10,6 @@ public class Log : Enemy {
     [Header("Attributes")]
     [SerializeField] float _chaseRadius;
     [SerializeField] float _attackRadius;
-    [SerializeField] Transform _homePosition;
 
     Transform _target;
     Rigidbody2D _rigidbody;
