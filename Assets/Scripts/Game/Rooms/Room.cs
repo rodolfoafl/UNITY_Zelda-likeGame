@@ -8,13 +8,43 @@ public class Room : MonoBehaviour {
 
     [SerializeField] Enemy[] _enemies;
     [SerializeField] Breakable[] _breakableObjects;
+    [SerializeField] GameObject _virtualCamera;
+
+    #region Properties
+    public Enemy[] Enemies
+    {
+        get
+        {
+            return _enemies;
+        }
+
+        set
+        {
+            _enemies = value;
+        }
+    }
+
+    public GameObject VirtualCamera
+    {
+        get
+        {
+            return _virtualCamera;
+        }
+
+        set
+        {
+            _virtualCamera = value;
+        }
+    }
+    #endregion
     
-    public void OnTriggerEnter2D(Collider2D other)
+    public virtual void OnTriggerEnter2D(Collider2D other)
     {
         if(other.CompareTag("Player") && !other.isTrigger)
         {
             ChangeActivation(_enemies, true);
             ChangeActivation(_breakableObjects, true);
+            _virtualCamera.SetActive(true);
         }
     }
 
@@ -24,10 +54,11 @@ public class Room : MonoBehaviour {
         {
             ChangeActivation(_enemies, false);
             ChangeActivation(_breakableObjects, false);
+            _virtualCamera.SetActive(false);
         }
     }
 
-    void ChangeActivation(Component[] components, bool activation)
+    public void ChangeActivation(Component[] components, bool activation)
     {
         if(components.Length > 0)
         {

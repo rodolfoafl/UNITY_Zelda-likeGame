@@ -20,6 +20,9 @@ namespace ZeldaTutorial.Enemies{
         [Header("Effects")]
         [SerializeField] GameObject _deathEffect;
 
+        [Header("Signals")]
+        [SerializeField] Signal _enemyRoomCleared;
+
         SpriteRenderer _spriteRenderer;
         float _deathEffectDelay = 1f;
 
@@ -148,6 +151,7 @@ namespace ZeldaTutorial.Enemies{
             if(Health <= 0)
             {
                 //_spriteRenderer.DOFade(0f, .5f);
+                _enemyRoomCleared.Raise();
                 DeathEffect();
                 Destroy(gameObject);            
             }

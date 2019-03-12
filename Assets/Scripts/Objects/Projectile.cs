@@ -15,7 +15,8 @@ public class Projectile : MonoBehaviour {
 	{
 		_rigidbody = GetComponent<Rigidbody2D>();
 	}
-	void Update()
+
+	public void Update()
 	{
 		_lifetime -= Time.deltaTime;
 		if(_lifetime <= 0)

@@ -11,6 +11,6 @@ public class RockProjectile : Projectile {
 	
 	// Update is called once per frame
 	void Update () {
-		
+        base.Update();
 	}
 }

@@ -124,9 +124,9 @@ GameObject:
   - component: {fileID: 1223606}
   - component: {fileID: 1223605}
   m_Layer: 0
-  m_Name: Book
+  m_Name: PossessedBook
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -2627,17 +2627,17 @@ Prefab:
     - target: {fileID: 114918785491163548, guid: 706bbf3638cba5346bdda0255819b177,
         type: 2}
       propertyPath: _cameraNewMin.x
-      value: -17.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114918785491163548, guid: 706bbf3638cba5346bdda0255819b177,
         type: 2}
       propertyPath: _cameraNewMax.x
-      value: -6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114918785491163548, guid: 706bbf3638cba5346bdda0255819b177,
         type: 2}
       propertyPath: _cameraNewMax.y
-      value: 15
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 706bbf3638cba5346bdda0255819b177, type: 2}

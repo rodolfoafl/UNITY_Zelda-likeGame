@@ -52,6 +52,11 @@ public class Door : Interactable {
 
 	public void Close()
 	{
-
-	}
+        _isOpen = false;
+        _doorSprite.enabled = true;
+        foreach (BoxCollider2D col in _doorColliders)
+        {
+            col.enabled = true;
+        }
+    }
 }
