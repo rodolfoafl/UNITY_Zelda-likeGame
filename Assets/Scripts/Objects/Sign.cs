@@ -13,7 +13,7 @@ namespace ZeldaTutorial.Objects
         [SerializeField] string _dialog;
 
         void Update () {
-            if(Input.GetKeyDown(KeyCode.E) && PlayerInRange)
+            if(Input.GetButtonDown("Attack") && PlayerInRange)
             {
                 if (_dialogBox.activeInHierarchy)
                 {

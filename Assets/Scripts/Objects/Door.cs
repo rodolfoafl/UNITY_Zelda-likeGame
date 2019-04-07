@@ -28,7 +28,7 @@ public class Door : Interactable {
 
 	void Update()
 	{
-		if(Input.GetKeyDown(KeyCode.E) && !_isOpen)
+		if(Input.GetButtonDown("Attack") && !_isOpen)
 		{
 			if(PlayerInRange && _doorType == DoorType.KEY)			
 			{

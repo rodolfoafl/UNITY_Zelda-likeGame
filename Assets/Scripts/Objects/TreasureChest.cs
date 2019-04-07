@@ -52,7 +52,7 @@ namespace ZeldaTutorial.Objects{
 		}
 
 		void Update () {
-            if(Input.GetKeyDown(KeyCode.E) && PlayerInRange)
+            if(Input.GetButtonDown("Attack") && PlayerInRange)
             {
 				CheckChestState(_isOpen);
             }

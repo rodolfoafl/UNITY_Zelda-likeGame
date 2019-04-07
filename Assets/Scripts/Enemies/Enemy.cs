@@ -110,6 +110,9 @@ namespace ZeldaTutorial.Enemies{
             {
                 transform.position = _homePosition.position;
             }
+
+            _health = _maxHealth.InitialValue;
+            _currentState = CharacterState.IDLE;
         }
 
         public void ChangeState(CharacterState newState)
@@ -170,7 +173,8 @@ namespace ZeldaTutorial.Enemies{
                     _enemyRoomCleared.Raise();
                 DeathEffect();
                 MakeLoot();
-                Destroy(gameObject);            
+                gameObject.SetActive(false);
+                //Destroy(gameObject);            
             }
         }
     }
