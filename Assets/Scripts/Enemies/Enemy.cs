@@ -14,6 +14,9 @@ namespace ZeldaTutorial.Enemies{
         [SerializeField] float _moveSpeed;
         [SerializeField] Transform _homePosition;
 
+        [Header("LootTables")]
+        [SerializeField] LootTable _loot;
+
         [Header("ScriptableObjects")]
         [SerializeField] FloatValue _maxHealth;
 
@@ -126,6 +129,18 @@ namespace ZeldaTutorial.Enemies{
             }
         }
 
+        void MakeLoot()
+        {
+            if(_loot != null)
+            {
+                PowerUp current = _loot.LootPowerUp();
+                if(current != null)
+                {
+                    Instantiate(current.gameObject, transform.position, Quaternion.identity);
+                }
+            }
+        }
+
         //NOTE: These methods are duplicated on PlayerMovement script.
         //In the future, it would be better centralize this logic in just one place!
         public void CallKnock(Rigidbody2D knockedRB, float knockTime, float damage)
@@ -151,8 +166,10 @@ namespace ZeldaTutorial.Enemies{
             if(Health <= 0)
             {
                 //_spriteRenderer.DOFade(0f, .5f);
-                _enemyRoomCleared.Raise();
+                if (_enemyRoomCleared != null)
+                    _enemyRoomCleared.Raise();
                 DeathEffect();
+                MakeLoot();
                 Destroy(gameObject);            
             }
         }
