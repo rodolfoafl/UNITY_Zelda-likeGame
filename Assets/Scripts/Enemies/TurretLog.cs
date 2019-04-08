@@ -12,7 +12,10 @@ public class TurretLog : Log {
 
     void Update()
     {
-        _fireDelaySeconds -= Time.deltaTime;
+        if (_fireDelaySeconds > 0)
+        {
+            _fireDelaySeconds -= Time.deltaTime;
+        }
         if(_fireDelaySeconds <= 0)
         {
             _canFire = true;

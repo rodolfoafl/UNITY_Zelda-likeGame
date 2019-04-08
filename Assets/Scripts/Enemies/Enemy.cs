@@ -169,11 +169,15 @@ namespace ZeldaTutorial.Enemies{
             if(Health <= 0)
             {
                 //_spriteRenderer.DOFade(0f, .5f);
-                if (_enemyRoomCleared != null)
-                    _enemyRoomCleared.Raise();
+                Health = 0;
                 DeathEffect();
                 MakeLoot();
                 gameObject.SetActive(false);
+                if (_enemyRoomCleared != null)
+                {
+                    _enemyRoomCleared.Raise();
+                    Debug.Log("Room Cleared!");
+                }
                 //Destroy(gameObject);            
             }
         }

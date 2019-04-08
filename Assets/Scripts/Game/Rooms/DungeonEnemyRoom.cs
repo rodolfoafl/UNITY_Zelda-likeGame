@@ -16,8 +16,8 @@ public class DungeonEnemyRoom : DungeonRoom {
                 {
                     return;
                 }
-            }
-            ChangeDoors(true);
+            }   
+            StartCoroutine(CallChangeDoors(true));
         }
     }
 
@@ -26,7 +26,7 @@ public class DungeonEnemyRoom : DungeonRoom {
         if (other.CompareTag("Player") && !other.isTrigger)
         {
             ChangeActivation(Enemies, true);
-            ChangeDoors(false);
+            StartCoroutine(CallChangeDoors(false));
             VirtualCamera.SetActive(true);
         }
     }
@@ -40,9 +40,14 @@ public class DungeonEnemyRoom : DungeonRoom {
         }
     }
 
+    IEnumerator CallChangeDoors(bool isOpen)
+    {
+        yield return new WaitForSeconds(1f);
+        ChangeDoors(isOpen);
+    }
+
     public void ChangeDoors(bool isOpen)
     {
-        Debug.Log("ChangeDoors");
         if (_doors.Length > 0)
         {
             for (int i = 0; i < _doors.Length; i++)

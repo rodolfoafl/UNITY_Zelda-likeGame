@@ -4,161 +4,163 @@ using UnityEngine;
 
 namespace ZeldaTutorial.Player
 {
-public class PlayerMovement : MonoBehaviour {
+    public class PlayerMovement : MonoBehaviour {
     
-    [Header("Movement")]
-    [SerializeField] float _speed;
+        [Header("Movement")]
+        [SerializeField] float _speed;
 
-    [Header("Signals")]
-    [SerializeField] Signal _playerHealthSignal;
-    [SerializeField] Signal _screeKickSignal;
+        [Header("Signals")]
+        [SerializeField] Signal _playerHealthSignal;
+        [SerializeField] Signal _screeKickSignal;
 
-    [Header("ScriptableObjects")]
-    [SerializeField] FloatValue _currentHealth;
-    [SerializeField] Vector2Value _transitionStartingPosition;
+        [Header("ScriptableObjects")]
+        [SerializeField] FloatValue _currentHealth;
+        [SerializeField] Vector2Value _transitionStartingPosition;
 
-    [Header("Inventory")]
-    [SerializeField] Inventory _inventory;
-    [SerializeField] SpriteRenderer _collectedItemSprite;
+        [Header("Inventory")]
+        [SerializeField] Inventory _inventory;
+        [SerializeField] SpriteRenderer _collectedItemSprite;
 
-    Rigidbody2D _rigidbody;
+        Rigidbody2D _rigidbody;
 
-    Vector3 _change;
+        Vector3 _change;
 
-    Animator _animator;
+        Animator _animator;
 
-    CharacterState _currentState;
+        CharacterState _currentState;
 
-    #region Properties
-    public CharacterState CurrentState
-    {
-        get
+        #region Properties
+        public CharacterState CurrentState
         {
-            return _currentState;
-        }
+            get
+            {
+                return _currentState;
+            }
 
-        protected set
-        {
-            _currentState = value;
+            protected set
+            {
+                _currentState = value;
+            }
         }
-    }
-    #endregion
+        #endregion
 
-	void Start () {
-        _currentState = CharacterState.WALK;
-        _rigidbody = GetComponent<Rigidbody2D>();
-        _animator = GetComponent<Animator>();
-        _animator.SetFloat("moveX", 0);
-        _animator.SetFloat("moveY", -1);
-        transform.position = _transitionStartingPosition.InitialValue;
-    }
+	    void Start () {
+            _currentState = CharacterState.WALK;
+            _rigidbody = GetComponent<Rigidbody2D>();
+            _animator = GetComponent<Animator>();
+            _animator.SetFloat("moveX", 0);
+            _animator.SetFloat("moveY", -1);
+            transform.position = _transitionStartingPosition.InitialValue;
+        }
 	
-	void Update () {
-        if(CurrentState == CharacterState.INTERACT)
+	    void Update () {
+            if(CurrentState == CharacterState.INTERACT)
+            {
+                return;
+            }
+
+            _change = Vector2.zero;
+            _change.x = Input.GetAxisRaw("Horizontal");
+            _change.y = Input.GetAxisRaw("Vertical");
+
+            if(Input.GetButtonDown("Attack") && _currentState != CharacterState.ATTACK && _currentState != CharacterState.STAGGER)
+            {
+                StartCoroutine(Attack());
+            }
+            else if (_currentState == CharacterState.WALK || _currentState == CharacterState.IDLE)
+            {
+                UpdateAnimationAndMove();
+            }
+	    }
+
+        public void ChangeState(CharacterState newState)
         {
-            return;
+            if (CurrentState != newState)
+            {
+                CurrentState = newState;
+            }
         }
 
-        _change = Vector2.zero;
-        _change.x = Input.GetAxisRaw("Horizontal");
-        _change.y = Input.GetAxisRaw("Vertical");
-
-        if(Input.GetButtonDown("Attack") && _currentState != CharacterState.ATTACK && _currentState != CharacterState.STAGGER)
+        IEnumerator Attack()
         {
-            StartCoroutine(Attack());
-        }
-        else if (_currentState == CharacterState.WALK || _currentState == CharacterState.IDLE)
-        {
-            UpdateAnimationAndMove();
-        }
-	}
-
-    public void ChangeState(CharacterState newState)
-    {
-        if (CurrentState != newState)
-        {
-            CurrentState = newState;
-        }
-    }
-
-    IEnumerator Attack()
-    {
-        _animator.SetBool("attacking", true);
-        _currentState = CharacterState.ATTACK;
-        yield return null;
-        _animator.SetBool("attacking", false);
-        yield return new WaitForSeconds(0.3f);
-        if(CurrentState != CharacterState.INTERACT)
-        {
-            ChangeState(CharacterState.WALK);
-        }
-    }
-
-    public void CollectItem()
-    {
-        if(_inventory.CurrentItem != null){
+            _animator.SetBool("attacking", true);
+            ChangeState(CharacterState.ATTACK);
+            yield return null;
+            _animator.SetBool("attacking", false);
+            yield return new WaitForSeconds(0.3f);
             if(CurrentState != CharacterState.INTERACT)
             {
-                _animator.SetBool("getItem", true);
-                ChangeState(CharacterState.INTERACT);
-                _collectedItemSprite.sprite = _inventory.CurrentItem.ItemSprite;
+                ChangeState(CharacterState.WALK);
+            }
+        }
+
+        public void CollectItem()
+        {
+            if(_inventory.CurrentItem != null){
+                if(CurrentState != CharacterState.INTERACT)
+                {
+                    _animator.SetBool("getItem", true);
+                    ChangeState(CharacterState.INTERACT);
+                    _collectedItemSprite.sprite = _inventory.CurrentItem.ItemSprite;
+                }
+                else
+                {
+                    _animator.SetBool("getItem", false);
+                    ChangeState(CharacterState.IDLE);
+                    _collectedItemSprite.sprite = null;
+                    _inventory.CurrentItem = null;
+                }
+            }
+        }
+
+        void UpdateAnimationAndMove()
+        {
+            if (_change != Vector3.zero)
+            {
+                MoveCharacter();
+                ChangeState(CharacterState.WALK);
             }
             else
             {
-                _animator.SetBool("getItem", false);
+                _animator.SetBool("moving", false);
                 ChangeState(CharacterState.IDLE);
-                _collectedItemSprite.sprite = null;
-                _inventory.CurrentItem = null;
+            }
+        }
+
+        void MoveCharacter()
+        {
+            _rigidbody.MovePosition(transform.position + _change.normalized * _speed * Time.deltaTime);
+            _animator.SetFloat("moveX", _change.x);
+            _animator.SetFloat("moveY", _change.y);
+            _animator.SetBool("moving", true);
+        }
+
+
+        //NOTE: These methods are duplicated on Enemy script.
+        //In the future, it would be better to centralize this logic in just one place!
+        public void CallKnock(Rigidbody2D knockedRB, float knockTime, float damage)
+        {
+            _currentHealth.RuntimeValue -= damage;
+            _playerHealthSignal.Raise();
+            if (_currentHealth.RuntimeValue > 0)
+            {
+                StartCoroutine(Knock(knockedRB, knockTime));
+            }
+            else
+            {
+                this.gameObject.SetActive(false);
+            }
+        }
+
+        IEnumerator Knock(Rigidbody2D knockedRB, float knockTime)
+        {
+            _screeKickSignal.Raise();
+            if (knockedRB != null)
+            {
+                yield return new WaitForSeconds(knockTime);
+                knockedRB.velocity = Vector2.zero;
+                _currentState = CharacterState.IDLE;
             }
         }
     }
-
-    void UpdateAnimationAndMove()
-    {
-        if (_change != Vector3.zero)
-        {
-            MoveCharacter();
-        }
-        else
-        {
-            _animator.SetBool("moving", false);
-        }
-    }
-
-    void MoveCharacter()
-    {
-        _rigidbody.MovePosition(transform.position + _change.normalized * _speed * Time.deltaTime);
-        _animator.SetFloat("moveX", _change.x);
-        _animator.SetFloat("moveY", _change.y);
-        _animator.SetBool("moving", true);
-    }
-
-
-    //NOTE: These methods are duplicated on Enemy script.
-    //In the future, it would be better to centralize this logic in just one place!
-    public void CallKnock(Rigidbody2D knockedRB, float knockTime, float damage)
-    {
-        _currentHealth.RuntimeValue -= damage;
-        _playerHealthSignal.Raise();
-        if (_currentHealth.RuntimeValue > 0)
-        {
-            StartCoroutine(Knock(knockedRB, knockTime));
-        }
-        else
-        {
-            this.gameObject.SetActive(false);
-        }
-    }
-
-    IEnumerator Knock(Rigidbody2D knockedRB, float knockTime)
-    {
-        _screeKickSignal.Raise();
-        if (knockedRB != null)
-        {
-            yield return new WaitForSeconds(knockTime);
-            knockedRB.velocity = Vector2.zero;
-            _currentState = CharacterState.IDLE;
-        }
-    }
-}
 }
