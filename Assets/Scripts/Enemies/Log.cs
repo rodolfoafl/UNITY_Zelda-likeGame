@@ -104,7 +104,7 @@ public class Log : Enemy {
             return;
         }
 
-        if (Vector3.Distance(_target.position, transform.position) <= _chaseRadius && Vector3.Distance(_target.position, transform.position) > _attackRadius)
+        if (Vector3.Distance(_target.position, transform.position) <= _chaseRadius && Vector3.Distance(_target.position, transform.position) > _attackRadius && Target.gameObject.activeInHierarchy)
         {
             Vector3 temp = Vector3.MoveTowards(transform.position, _target.position, MoveSpeed * Time.deltaTime);
             ChangeState(CharacterState.WALK);
