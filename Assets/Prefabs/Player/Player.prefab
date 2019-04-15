@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 60262245438531022}
   - component: {fileID: 114297799263230352}
   - component: {fileID: 114879548093194852}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: RightHitBox
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 114928386737977350}
   - component: {fileID: 114256160031586276}
   - component: {fileID: 114810983609344830}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -64,7 +64,7 @@ GameObject:
   - component: {fileID: 60553570601265162}
   - component: {fileID: 114754671013599802}
   - component: {fileID: 114512251867990348}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: UpHitBox
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -82,7 +82,7 @@ GameObject:
   - component: {fileID: 60641096569242430}
   - component: {fileID: 114110985289451852}
   - component: {fileID: 114240909743399818}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: DownHitBox
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -100,7 +100,7 @@ GameObject:
   - component: {fileID: 60014622735813546}
   - component: {fileID: 114392329571702422}
   - component: {fileID: 114155916026964704}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: LeftHitBox
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -116,7 +116,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4909699859389606}
   - component: {fileID: 212067697329186066}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ActionPopup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 4096402611894844}
   - component: {fileID: 212021463813597312}
   - component: {fileID: 114471804863921414}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: CollectedItem
   m_TagString: Untagged
   m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
@@ -647,6 +647,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f69493fc656952a49b6463a5ca7f2809, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _projectile: {fileID: 0}
   _speed: 5
   _playerHealthSignal: {fileID: 11400000, guid: f1ae8f224239a9348933aae2e0a441dc,
     type: 2}
