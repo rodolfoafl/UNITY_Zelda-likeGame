@@ -5,7 +5,10 @@ using UnityEngine;
 namespace ZeldaTutorial.Player
 {
     public class PlayerMovement : MonoBehaviour {
-    
+
+        [Header("Weapons")]
+        [SerializeField] GameObject _arrow;
+
         [Header("Movement")]
         [SerializeField] float _speed;
 
@@ -67,6 +70,10 @@ namespace ZeldaTutorial.Player
             {
                 StartCoroutine(Attack());
             }
+            else if(Input.GetButtonDown("Secondary Attack") && _currentState != CharacterState.ATTACK && _currentState != CharacterState.STAGGER)
+            {
+                StartCoroutine(SecondaryAttack());
+            }
             else if (_currentState == CharacterState.WALK || _currentState == CharacterState.IDLE)
             {
                 UpdateAnimationAndMove();
@@ -92,6 +99,35 @@ namespace ZeldaTutorial.Player
             {
                 ChangeState(CharacterState.WALK);
             }
+        }
+
+        IEnumerator SecondaryAttack()
+        {
+            ChangeState(CharacterState.ATTACK);
+            yield return null;
+            CreateArrow();
+            yield return new WaitForSeconds(0.3f);
+            if (CurrentState != CharacterState.INTERACT)
+            {
+                ChangeState(CharacterState.WALK);
+            }
+        }
+
+        void CreateArrow()
+        {
+            Vector2 velocity = new Vector2(_animator.GetFloat("moveX"), _animator.GetFloat("moveY"));
+
+            GameObject arrow = Instantiate(_arrow, transform.position, Quaternion.identity);
+            if(arrow.GetComponent<Arrow>() != null)
+            {
+                arrow.GetComponent<Arrow>().Setup(velocity, SetArrowDirection());
+            }
+        }
+
+        Vector3 SetArrowDirection()
+        {
+            float degree = Mathf.Atan2(_animator.GetFloat("moveY"), _animator.GetFloat("moveX")) * Mathf.Rad2Deg;
+            return new Vector3(0, 0, degree);
         }
 
         public void CollectItem()
