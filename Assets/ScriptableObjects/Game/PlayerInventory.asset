@@ -14,3 +14,4 @@ MonoBehaviour:
   _currentItem: {fileID: 0}
   _numberOfKeys: 0
   _numberOfCoins: 0
+  _maxStamina: 10

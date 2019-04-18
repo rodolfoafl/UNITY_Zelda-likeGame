@@ -5,9 +5,11 @@ using UnityEngine;
 [CreateAssetMenu]
 public class Inventory : ScriptableObject {
     [SerializeField] Item _currentItem;
+
+    [SerializeField] int _numberOfKeys;
+    [SerializeField] int _numberOfCoins;
+    
     List<Item> _items = new List<Item>();
-    public int _numberOfKeys;
-    public int _numberOfCoins;
 
     #region Properties
     public Item CurrentItem
@@ -66,7 +68,7 @@ public class Inventory : ScriptableObject {
     public void AddItem(Item itemToAdd){
         if(itemToAdd.IsKey)
         {
-            _numberOfKeys ++;
+            NumberOfKeys++;
         }
         else
         {

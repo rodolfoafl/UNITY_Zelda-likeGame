@@ -12,9 +12,13 @@ namespace ZeldaTutorial.Player
         [Header("Movement")]
         [SerializeField] float _speed;
 
+        [Header("Stamina")]
+        [SerializeField] float _maxStamina;
+
         [Header("Signals")]
         [SerializeField] Signal _playerHealthSignal;
         [SerializeField] Signal _screeKickSignal;
+        [SerializeField] Signal _secondaryAttackSignal;
 
         [Header("ScriptableObjects")]
         [SerializeField] FloatValue _currentHealth;
@@ -32,6 +36,8 @@ namespace ZeldaTutorial.Player
 
         CharacterState _currentState;
 
+        float _currentStamina;
+
         #region Properties
         public CharacterState CurrentState
         {
@@ -45,15 +51,42 @@ namespace ZeldaTutorial.Player
                 _currentState = value;
             }
         }
+
+        public float MaxStamina
+        {
+            get
+            {
+                return _maxStamina;
+            }
+        }
+
+        public float CurrentStamina
+        {
+            get
+            {
+                return _currentStamina;
+            }
+
+            set
+            {
+                _currentStamina += value;
+                if(_currentStamina > MaxStamina)
+                {
+                    _currentStamina = MaxStamina;
+                }
+            }
+        }
         #endregion
 
-	    void Start () {
+        void Start () {
             _currentState = CharacterState.WALK;
             _rigidbody = GetComponent<Rigidbody2D>();
             _animator = GetComponent<Animator>();
             _animator.SetFloat("moveX", 0);
             _animator.SetFloat("moveY", -1);
             transform.position = _transitionStartingPosition.InitialValue;
+
+            _currentStamina = MaxStamina;
         }
 	
 	    void Update () {
@@ -72,7 +105,11 @@ namespace ZeldaTutorial.Player
             }
             else if(Input.GetButtonDown("Secondary Attack") && _currentState != CharacterState.ATTACK && _currentState != CharacterState.STAGGER)
             {
-                StartCoroutine(SecondaryAttack());
+                if (CurrentStamina > 0)
+                {
+                    CurrentStamina = -1;
+                    StartCoroutine(SecondaryAttack());
+                }                  
             }
             else if (_currentState == CharacterState.WALK || _currentState == CharacterState.IDLE)
             {
@@ -103,6 +140,7 @@ namespace ZeldaTutorial.Player
 
         IEnumerator SecondaryAttack()
         {
+            _secondaryAttackSignal.Raise();
             ChangeState(CharacterState.ATTACK);
             yield return null;
             CreateArrow();
