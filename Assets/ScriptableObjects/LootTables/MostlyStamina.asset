@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 188c24394cfe5f34b9865bfa38370ca3, type: 3}
+  m_Name: MostlyStamina
+  m_EditorClassIdentifier: 
+  _loots:
+  - _thisLoot: {fileID: 114787326036946574, guid: afbf5e5c16172514cb8de6fd4deb0a15,
+      type: 2}
+    _lootChance: 50
+  - _thisLoot: {fileID: 114104026467892162, guid: 368a4a5283388e94db47ac41b5b71197,
+      type: 2}
+    _lootChance: 25
