@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4803408566697924}
   - component: {fileID: 60379287959825572}
   - component: {fileID: 114343141839587442}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: DownHitBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,9 +43,9 @@ GameObject:
   - component: {fileID: 95519144621716016}
   - component: {fileID: 114022653865501426}
   - component: {fileID: 114184622962844952}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ogre
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -60,7 +60,7 @@ GameObject:
   - component: {fileID: 4184967396048964}
   - component: {fileID: 60788106910031118}
   - component: {fileID: 114095255524193682}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: UpHitBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -77,7 +77,7 @@ GameObject:
   - component: {fileID: 4434141447650372}
   - component: {fileID: 60030272423405786}
   - component: {fileID: 114607722986740640}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RightHitBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 4536306225125890}
   - component: {fileID: 60964479320890336}
   - component: {fileID: 114663726178232934}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LeftHitBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
