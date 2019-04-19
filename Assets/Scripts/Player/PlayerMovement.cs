@@ -8,6 +8,7 @@ namespace ZeldaTutorial.Player
 
         [Header("Weapons")]
         [SerializeField] GameObject _arrow;
+        [SerializeField] Item _bow;
 
         [Header("Movement")]
         [SerializeField] float _speed;
@@ -105,11 +106,14 @@ namespace ZeldaTutorial.Player
             }
             else if(Input.GetButtonDown("Secondary Attack") && _currentState != CharacterState.ATTACK && _currentState != CharacterState.STAGGER)
             {
-                if (CurrentStamina > 0)
+                if (_inventory.CheckForItem(_bow))
                 {
-                    CurrentStamina = -1;
-                    StartCoroutine(SecondaryAttack());
-                }                  
+                    if (CurrentStamina > 0)
+                    {
+                        CurrentStamina = -1;
+                        StartCoroutine(SecondaryAttack());
+                    }
+                }
             }
             else if (_currentState == CharacterState.WALK || _currentState == CharacterState.IDLE)
             {
