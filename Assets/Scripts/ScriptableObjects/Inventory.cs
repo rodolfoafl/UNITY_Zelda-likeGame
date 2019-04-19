@@ -9,7 +9,7 @@ public class Inventory : ScriptableObject {
     [SerializeField] int _numberOfKeys;
     [SerializeField] int _numberOfCoins;
     
-    List<Item> _items = new List<Item>();
+    [SerializeField] List<Item> _items = new List<Item>();
 
     #region Properties
     public Item CurrentItem
@@ -64,6 +64,15 @@ public class Inventory : ScriptableObject {
         }
     }
     #endregion
+
+    public bool CheckForItem(Item item)
+    {
+        if (_items.Contains(item))
+        {
+            return true;
+        }
+        return false;
+    }
 
     public void AddItem(Item itemToAdd){
         if(itemToAdd.IsKey)
