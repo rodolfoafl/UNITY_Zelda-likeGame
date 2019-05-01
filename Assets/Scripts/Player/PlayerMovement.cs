@@ -196,6 +196,8 @@ namespace ZeldaTutorial.Player
             if (_change != Vector3.zero)
             {
                 MoveCharacter();
+                _change.x = Mathf.Round(_change.x);
+                _change.y = Mathf.Round(_change.y);
                 ChangeState(CharacterState.WALK);
             }
             else
