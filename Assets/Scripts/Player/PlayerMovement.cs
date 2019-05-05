@@ -29,6 +29,15 @@ namespace ZeldaTutorial.Player
         [SerializeField] Inventory _inventory;
         [SerializeField] SpriteRenderer _collectedItemSprite;
 
+        [Header("IFrame")]
+        [SerializeField] Color _flashColor;
+        [SerializeField] Color _regularColor;
+        [SerializeField] float _flashDuration;
+        [SerializeField] int _numberOfFlashes;
+        [SerializeField] Collider2D _triggerCollider;
+
+        SpriteRenderer _spriteRenderer;
+
         Rigidbody2D _rigidbody;
 
         Vector3 _change;
@@ -83,6 +92,7 @@ namespace ZeldaTutorial.Player
             _currentState = CharacterState.WALK;
             _rigidbody = GetComponent<Rigidbody2D>();
             _animator = GetComponent<Animator>();
+            _spriteRenderer = GetComponent<SpriteRenderer>();
             _animator.SetFloat("moveX", 0);
             _animator.SetFloat("moveY", -1);
             transform.position = _transitionStartingPosition.InitialValue;
@@ -237,10 +247,26 @@ namespace ZeldaTutorial.Player
             _screeKickSignal.Raise();
             if (knockedRB != null)
             {
+                StartCoroutine(Flash());
                 yield return new WaitForSeconds(knockTime);
                 knockedRB.velocity = Vector2.zero;
                 _currentState = CharacterState.IDLE;
             }
+        }
+
+        IEnumerator Flash()
+        {
+            int count = 0;
+            _triggerCollider.enabled = false;
+            while(count < _numberOfFlashes)
+            {
+                _spriteRenderer.color = _flashColor;
+                yield return new WaitForSeconds(_flashDuration);
+                _spriteRenderer.color = _regularColor;
+                yield return new WaitForSeconds(_flashDuration);
+                count++;
+            }
+            _triggerCollider.enabled = true;
         }
     }
 }
