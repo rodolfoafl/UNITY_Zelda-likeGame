@@ -3,17 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 using ZeldaTutorial.Objects;
 
-public class BoundedNPC : Interactable {
+public class BoundedNPC : Sign {
 
+    [Header("Bounds")]
     [SerializeField] Collider2D _bounds;
-    [SerializeField] float _moveSpeed;
 
+    [Header("Movement")]
+    [SerializeField] float _moveSpeed;
+    [SerializeField] float _minMoveTime;
+    [SerializeField] float _maxMoveTime;
+    [SerializeField] float _minWaitTime;
+    [SerializeField] float _maxWaitTime;
+
+
+    float _moveTimeSeconds;
+    float _waitTimeSeconds;
+    bool _isMoving;
     Animator _animator;
     Rigidbody2D _rigidbody;
     Transform _transform;
     Vector3 _currentDirection;
 
     void Start () {
+        _moveTimeSeconds = Random.Range(_minMoveTime, _maxMoveTime);
+        _waitTimeSeconds = Random.Range(_minWaitTime, _maxWaitTime);
+
         _transform = GetComponent<Transform>();
         _rigidbody = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
@@ -21,17 +35,43 @@ public class BoundedNPC : Interactable {
         ChangeDirection();
 	}
 	
-	void Update () {
-        if (!PlayerInRange)
+	public override void Update () {
+        base.Update();
+
+        if (_isMoving)
         {
-            Move();
+            _moveTimeSeconds -= Time.deltaTime;
+            if(_moveTimeSeconds <= 0)
+            {
+                _moveTimeSeconds = Random.Range(_minMoveTime, _maxMoveTime);
+                _isMoving = false;
+            }
+
+            if (!PlayerInRange)
+            {
+                Move();
+            }
+            else
+            {
+                _isMoving = false;
+                _animator.SetBool("Moving", false);
+            }
         }
         else
         {
-            _animator.SetBool("Moving", false);
+            _waitTimeSeconds -= Time.deltaTime;
+            if(_waitTimeSeconds <= 0)
+            {
+                if (!PlayerInRange)
+                {
+                    ChooseDifferentDirection();
+                }
+                _isMoving = true;
+                _waitTimeSeconds = Random.Range(_minWaitTime, _maxWaitTime);
+            }
         }
 	}
-
+    
     void Move()
     {
         _animator.SetBool("Moving", true);
@@ -74,7 +114,7 @@ public class BoundedNPC : Interactable {
         _animator.SetFloat("MoveY", _currentDirection.y);
     }
 
-    void OnCollisionEnter2D(Collision2D other)
+    private void ChooseDifferentDirection()
     {
         Vector3 direction = _currentDirection;
         ChangeDirection();
@@ -84,5 +124,10 @@ public class BoundedNPC : Interactable {
             loops++;
             ChangeDirection();
         }
+    }
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        ChooseDifferentDirection();
     }
 }
