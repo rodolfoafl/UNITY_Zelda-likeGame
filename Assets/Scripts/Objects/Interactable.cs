@@ -43,7 +43,10 @@ namespace ZeldaTutorial.Objects{
             if (other.CompareTag("Player") && !other.isTrigger)
             {
                 PlayerInRange = true;
-                TogglePopUp.Raise();
+                if (TogglePopUp != null)
+                {
+                    TogglePopUp.Raise();
+                }
             }
         }
 
@@ -51,7 +54,10 @@ namespace ZeldaTutorial.Objects{
         {
             if (other.CompareTag("Player") && !other.isTrigger)
             {
-                TogglePopUp.Raise();
+                if (TogglePopUp != null)
+                {
+                    TogglePopUp.Raise();
+                }
                 PlayerInRange = false;
             }
         }
