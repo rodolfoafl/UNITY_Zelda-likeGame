@@ -12,8 +12,8 @@ namespace ZeldaTutorial.Objects
         [SerializeField] Text _dialogText;
         [SerializeField] string _dialog;
 
-        void Update () {
-            if(Input.GetButtonDown("Attack") && PlayerInRange)
+        public virtual void Update () {
+            if(Input.GetKeyDown(KeyCode.E) && PlayerInRange)
             {
                 if (_dialogBox.activeInHierarchy)
                 {
