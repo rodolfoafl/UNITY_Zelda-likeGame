@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu]
+[System.Serializable]
 public class Item : ScriptableObject {
 	[SerializeField] Sprite _itemSprite;
 	[SerializeField] string _itemDescription;

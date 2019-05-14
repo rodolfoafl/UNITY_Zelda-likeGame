@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu]
-public class Vector2Value : ScriptableObject, ISerializationCallbackReceiver {
+[System.Serializable]
+public class Vector2Value : ScriptableObject {
 	[SerializeField] Vector2 _initialValue;
 
 	[SerializeField] Vector2 _defaultValue;
 
-#region Properties
+    #region Properties
     public Vector2 InitialValue
     {
         get
@@ -36,13 +37,4 @@ public class Vector2Value : ScriptableObject, ISerializationCallbackReceiver {
     }
 	#endregion
 
-    public void OnAfterDeserialize()
-    {
-        InitialValue = _defaultValue;
-    }
-
-    public void OnBeforeSerialize()
-    {
-        
-    }
 }
