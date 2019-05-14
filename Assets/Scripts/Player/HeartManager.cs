@@ -26,8 +26,11 @@ namespace ZeldaTutorial.Player
         {
             for(int i = 0; i < _heartsContainers.RuntimeValue; i++)
             {
-                _hearts[i].gameObject.SetActive(true);
-                _hearts[i].sprite = _fullHeart;
+                if (i < _hearts.Length)
+                {
+                    _hearts[i].gameObject.SetActive(true);
+                    _hearts[i].sprite = _fullHeart;
+                }
             }
         }
 
