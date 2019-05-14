@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu]
-public class BoolValue : ScriptableObject, ISerializationCallbackReceiver {
+[System.Serializable]
+public class BoolValue : ScriptableObject {
 
     public bool _initialValue;
 
@@ -36,11 +37,4 @@ public class BoolValue : ScriptableObject, ISerializationCallbackReceiver {
         }
     }
     #endregion
-
-    public void OnAfterDeserialize()
-    {
-        RuntimeValue = InitialValue;
-    }
-
-    public void OnBeforeSerialize() { }
 }
