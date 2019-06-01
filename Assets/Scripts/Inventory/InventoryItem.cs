@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [CreateAssetMenu(fileName = "New Item", menuName = "Inventory/Items")]
 public class InventoryItem: ScriptableObject {
@@ -14,6 +15,8 @@ public class InventoryItem: ScriptableObject {
 
     [SerializeField] bool _usable;
     [SerializeField] bool _unique;
+
+    [SerializeField] UnityEvent _event;
 
     #region Properties
     public string ItemName
@@ -93,5 +96,23 @@ public class InventoryItem: ScriptableObject {
             _unique = value;
         }
     }
+
+    public UnityEvent Event
+    {
+        get
+        {
+            return _event;
+        }
+
+        protected set
+        {
+            _event = value;
+        }
+    }
     #endregion
+
+    public void CallEvent()
+    {
+        _event.Invoke();
+    }
 }
