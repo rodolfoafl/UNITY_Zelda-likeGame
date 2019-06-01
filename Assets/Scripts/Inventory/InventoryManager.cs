@@ -14,10 +14,12 @@ public class InventoryManager : MonoBehaviour {
 
     [SerializeField] PlayerInventory _playerInventory;
 
+    public InventoryItem CurrentItem { get; protected set; }
+
     void Start()
     {
         MakeInventorySlots();
-        SetDescriptionAndButton("", false);
+        SetDescriptionAndButton("", false, null);
     }
 
     void MakeInventorySlots()
@@ -34,9 +36,18 @@ public class InventoryManager : MonoBehaviour {
         }
     }
 
-    public void SetDescriptionAndButton(string description, bool buttonActive)
+    public void SetDescriptionAndButton(string description, bool buttonActive, InventoryItem newItem)
     {
+        CurrentItem = newItem;
         _descriptionText.text = description;
         _useButton.SetActive(buttonActive);
+    }
+
+    public void UseItem()
+    {
+        if (CurrentItem)
+        {
+            CurrentItem.CallEvent();
+        }
     }
 }
