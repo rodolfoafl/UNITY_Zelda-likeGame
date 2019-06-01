@@ -53,4 +53,12 @@ public class InventorySlot : MonoBehaviour
             _itemNumberText.text = _inventoryItem.NumberHeld.ToString();
         }
     }
+
+    public void SlotSelected()
+    {
+        if (_inventoryItem)
+        {
+            _inventoryManager.SetDescriptionAndButton(_inventoryItem.ItemDescription, _inventoryItem.Usable, _inventoryItem);
+        }
+    }
 }
