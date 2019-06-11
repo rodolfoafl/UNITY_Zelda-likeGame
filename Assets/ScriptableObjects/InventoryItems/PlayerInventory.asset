@@ -13,3 +13,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerInventory:
   - {fileID: 11400000, guid: c6b424047945a2a45b27f7f00c66d561, type: 2}
+  - {fileID: 11400000, guid: f2169783b5e94ad45ab5a1fb5ce02dd2, type: 2}
