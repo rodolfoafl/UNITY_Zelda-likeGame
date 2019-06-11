@@ -9,9 +9,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 50e7d3073ec48b14292a93934fa9fdd3, type: 3}
-  m_Name: PlayerInventory
+  m_Name: Inventory
   m_EditorClassIdentifier: 
   _currentItem: {fileID: 0}
   _numberOfKeys: 0
   _numberOfCoins: 0
-  _maxStamina: 10
+  _items: []
