@@ -115,4 +115,13 @@ public class InventoryItem: ScriptableObject {
     {
         _event.Invoke();
     }
+
+    public void DecreaseAmount(int value)
+    {
+        NumberHeld -= value;
+        if(NumberHeld < 0)
+        {
+            NumberHeld = 0;
+        }
+    }
 }
