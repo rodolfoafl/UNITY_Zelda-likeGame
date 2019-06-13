@@ -28,10 +28,13 @@ public class InventoryManager : MonoBehaviour {
         {
             for (int i = 0; i < _playerInventory.Inventory.Count; i++)
             {
-                GameObject newGOSlot = Instantiate(_blankInventorySlot, _inventoryContent.transform);
+                if (_playerInventory.Inventory[i].NumberHeld > 0) { 
 
-                InventorySlot newSlot = newGOSlot.GetComponent<InventorySlot>();
-                newSlot.Setup(_playerInventory.Inventory[i], this);
+                    GameObject newGOSlot = Instantiate(_blankInventorySlot, _inventoryContent.transform);
+
+                    InventorySlot newSlot = newGOSlot.GetComponent<InventorySlot>();
+                    newSlot.Setup(_playerInventory.Inventory[i], this);
+                }
             }
         }
     }
@@ -43,11 +46,26 @@ public class InventoryManager : MonoBehaviour {
         _useButton.SetActive(buttonActive);
     }
 
+    void ClearInventorySlots()
+    {
+        for (int i = 0; i < _inventoryContent.transform.childCount; i++)
+        {
+            Destroy(_inventoryContent.transform.GetChild(i).gameObject);
+        }
+    }
+
     public void UseItem()
     {
         if (CurrentItem)
         {
             CurrentItem.CallEvent();
+            ClearInventorySlots();
+            MakeInventorySlots();
+
+            if (CurrentItem.NumberHeld == 0)
+            {
+                SetDescriptionAndButton("", false, null);
+            }
         }
     }
 }
