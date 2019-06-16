@@ -16,8 +16,9 @@ public class InventoryManager : MonoBehaviour {
 
     public InventoryItem CurrentItem { get; protected set; }
 
-    void Start()
+    void OnEnable()
     {
+        ClearInventorySlots();
         MakeInventorySlots();
         SetDescriptionAndButton("", false, null);
     }
