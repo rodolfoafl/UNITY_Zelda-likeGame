@@ -65,7 +65,7 @@ public class InventoryItem: ScriptableObject {
             return _numberHeld;
         }
 
-        protected set
+        set
         {
             _numberHeld = value;
         }
