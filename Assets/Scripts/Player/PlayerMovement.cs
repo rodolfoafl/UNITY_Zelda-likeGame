@@ -17,12 +17,12 @@ namespace ZeldaTutorial.Player
         [SerializeField] float _maxStamina;
 
         [Header("Signals")]
-        [SerializeField] Signal _playerHealthSignal;
+        //[SerializeField] Signal _playerHealthSignal;
         [SerializeField] Signal _screeKickSignal;
         [SerializeField] Signal _secondaryAttackSignal;
 
         [Header("ScriptableObjects")]
-        [SerializeField] FloatValue _currentHealth;
+        //[SerializeField] FloatValue _currentHealth;
         [SerializeField] Vector2Value _transitionStartingPosition;
 
         [Header("Inventory")]
@@ -230,6 +230,9 @@ namespace ZeldaTutorial.Player
         //In the future, it would be better to centralize this logic in just one place!
         public void CallKnock(Rigidbody2D knockedRB, float knockTime, float damage)
         {
+            StartCoroutine(Knock(knockedRB, knockTime));
+
+            /*
             _currentHealth.RuntimeValue -= damage;
             _playerHealthSignal.Raise();
             if (_currentHealth.RuntimeValue > 0)
@@ -240,6 +243,7 @@ namespace ZeldaTutorial.Player
             {
                 this.gameObject.SetActive(false);
             }
+            */
         }
 
         IEnumerator Knock(Rigidbody2D knockedRB, float knockTime)
