@@ -7,7 +7,6 @@ public class GenericDamage : MonoBehaviour
 {
     [SerializeField] float _damage;
     [SerializeField] string _otherTag;
-    [SerializeField] InternalEditorUtility _tags;
 
     public void OnTriggerEnter2D(Collider2D other)
     {
@@ -20,5 +19,4 @@ public class GenericDamage : MonoBehaviour
             }
         }
     }
-
 }
