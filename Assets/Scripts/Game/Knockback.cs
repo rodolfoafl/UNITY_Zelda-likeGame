@@ -1,52 +1,55 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using DG.Tweening;
 using UnityEngine;
 using ZeldaTutorial.Enemies;
 using ZeldaTutorial.Player;
 
 namespace ZeldaTutorial.Game{
-public class Knockback : MonoBehaviour {
+    public class Knockback : MonoBehaviour {
 
-    [SerializeField] float _thrust;
-    [SerializeField] float _knockTime;
-    [SerializeField] float _damage;
+        [SerializeField] float _thrust;
+        [SerializeField] float _knockTime;
+        [SerializeField] string _otherTag;
 
-    Enemy _enemy;
-    PlayerMovement _player;
+        Enemy _enemy;
+        PlayerMovement _player;
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        _player = other.GetComponent<PlayerMovement>();        
-
-        if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Player"))
+        void OnTriggerEnter2D(Collider2D other)
         {
-            Rigidbody2D otherRB = other.GetComponent<Rigidbody2D>();
+            _player = other.GetComponentInParent<PlayerMovement>();
 
-            if (otherRB != null)
+            if (_otherTag != null && other.gameObject.CompareTag(_otherTag) && other.isTrigger)
             {
-                Vector2 difference = otherRB.transform.position - transform.position;
-                difference = difference.normalized * _thrust;
-                otherRB.AddForce(difference, ForceMode2D.Impulse);
+                Rigidbody2D otherRB = other.GetComponentInParent<Rigidbody2D>();
 
-                if (other.gameObject.CompareTag("Enemy") && other.isTrigger)
+                if (otherRB != null)
                 {
-                    _enemy = other.GetComponent<Enemy>();
-                    _enemy.ChangeState(CharacterState.STAGGER);
-                    _enemy.CallKnock(otherRB, _knockTime, _damage);
-                    return;
-                }
-
-                if (other.gameObject.CompareTag("Player"))
-                {
-                    if (_player.CurrentState != CharacterState.STAGGER)
+                    Vector3 difference = otherRB.transform.position - transform.position;
+                    difference = difference.normalized * _thrust;
+                    //otherRB.AddForce(difference, ForceMode2D.Impulse);
+                    otherRB.DOMove(otherRB.transform.position + difference, _knockTime);
+                    
+                    
+                    //ENEMY KNOCKBACK
+                    if (other.gameObject.CompareTag("Enemy") && other.isTrigger)
                     {
-                        _player.ChangeState(CharacterState.STAGGER);
-                        _player.CallKnock(otherRB, _knockTime, _damage);
+                        _enemy = other.GetComponent<Enemy>();
+                        _enemy.ChangeState(CharacterState.STAGGER);
+                        _enemy.CallKnock(otherRB, _knockTime);
+                        return;
                     }
-                    return;
-                }                
-            }
-        }                                                           
+
+                    //PLAYER KNOCKBACK
+                    if (other.gameObject.CompareTag("Player"))
+                    {
+                        if (_player.CurrentState != CharacterState.STAGGER)
+                        {
+                            _player.ChangeState(CharacterState.STAGGER);
+                            _player.CallKnock(otherRB, _knockTime);
+                        }
+                        return;
+                    }                
+                }
+            }                                                           
+        }
     }
-}
 }
