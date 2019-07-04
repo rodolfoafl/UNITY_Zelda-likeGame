@@ -5,10 +5,9 @@ using UnityEngine;
 [CreateAssetMenu]
 [System.Serializable]
 public class FloatValue : ScriptableObject {
-    [SerializeField] float _initialValue;
 
-    [SerializeField]
-    float _runtimeValue;
+    [SerializeField] float _initialValue;
+    [SerializeField] float _runtimeValue;
 
     #region Properties
     public float InitialValue
