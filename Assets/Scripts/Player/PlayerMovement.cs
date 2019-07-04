@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace ZeldaTutorial.Player
@@ -225,25 +224,11 @@ namespace ZeldaTutorial.Player
             _animator.SetBool("moving", true);
         }
 
-
         //NOTE: These methods are duplicated on Enemy script.
         //In the future, it would be better to centralize this logic in just one place!
-        public void CallKnock(Rigidbody2D knockedRB, float knockTime, float damage)
+        public void CallKnock(Rigidbody2D knockedRB, float knockTime)
         {
             StartCoroutine(Knock(knockedRB, knockTime));
-
-            /*
-            _currentHealth.RuntimeValue -= damage;
-            _playerHealthSignal.Raise();
-            if (_currentHealth.RuntimeValue > 0)
-            {
-                StartCoroutine(Knock(knockedRB, knockTime));
-            }
-            else
-            {
-                this.gameObject.SetActive(false);
-            }
-            */
         }
 
         IEnumerator Knock(Rigidbody2D knockedRB, float knockTime)
