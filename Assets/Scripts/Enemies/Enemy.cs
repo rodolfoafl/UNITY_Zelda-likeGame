@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
@@ -146,10 +145,9 @@ namespace ZeldaTutorial.Enemies{
 
         //NOTE: These methods are duplicated on PlayerMovement script.
         //In the future, it would be better centralize this logic in just one place!
-        public void CallKnock(Rigidbody2D knockedRB, float knockTime, float damage)
+        public void CallKnock(Rigidbody2D knockedRB, float knockTime)
         {
             StartCoroutine(Knock(knockedRB, knockTime));
-            TakeDamage(damage);
         }
 
         IEnumerator Knock(Rigidbody2D knockedRB, float knockTime)
